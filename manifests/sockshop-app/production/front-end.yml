@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: front-end.stable
+  name: front-end
   namespace: production
 spec:
   replicas: 1
@@ -17,7 +17,7 @@ spec:
         support.contact: "jane.smith@sockshop.com"
         support.channel: "#support-sockshop-frontend"
       labels:
-        app: front-end.stable
+        app: front-end
         stage: prod
         release: stable
         version: v1
@@ -53,7 +53,7 @@ kind: Service
 metadata:
   name: front-end
   labels:
-    app: front-end.stable
+    app: front-end
   namespace: production
 spec:
   ports:
@@ -61,5 +61,5 @@ spec:
     port: 8080
     targetPort: 8080
   selector:
-    app: front-end.stable
+    app: front-end
   type: LoadBalancer
