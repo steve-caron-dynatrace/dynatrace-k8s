@@ -1,0 +1,31 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: catalogue-db
+spec:
+  hosts:
+  - sockshop-catalogue-db.ckbkxcwrvff7.eu-west-1.rds.amazonaws.com
+  ports:
+  - number: 3306
+    name: tcp
+    protocol: TCP
+  resolution: DNS
+  location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: carts-and-orders-db
+spec:
+  hosts:
+  - "*.mongodb.net"
+  addresses:
+  - 18.214.93.113
+  - 18.215.19.51
+  - 54.82.134.106
+  ports:
+  - number: 27017
+    name: tcp
+    protocol: TCP
+  location: MESH_EXTERNAL
