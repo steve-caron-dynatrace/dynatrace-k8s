@@ -23,4 +23,4 @@ kubectl patch deployment -n production shipping  -p '{"spec":{"template":{"metad
 kubectl patch deployment -n production user -p '{"spec":{"template":{"metadata":{"annotations":{"dynatrace/instrument": "true"}}}}}'
 
 sleep 20s
-oc get po --all-namespaces -l product=sockshop
+kubectl get po --all-namespaces -l product=sockshop
