@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: front-end
+  name: front-end-v2
   namespace: production
 spec:
   replicas: 1
@@ -17,7 +17,6 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
         dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 1.4.0.7424

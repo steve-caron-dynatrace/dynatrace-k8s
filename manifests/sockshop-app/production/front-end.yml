@@ -9,7 +9,6 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
         dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 1.4.0.7424
@@ -27,6 +26,11 @@ spec:
       containers:
       - name: front-end
         image: dynatracesockshop/front-end:0.5.0
+        env:
+        - name: DT_TAGS
+          value: "MyFirstTag=Tag1Value MySecondTag=Tag2Value"
+        - name: DT_CUSTOM_PROP
+          value: "MyProp1=Prop1Value MyProd2=Prop2Value"
         ports:
         - containerPort: 8080
         livenessProbe:
