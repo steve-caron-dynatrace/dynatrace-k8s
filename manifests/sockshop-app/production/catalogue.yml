@@ -9,6 +9,7 @@ spec:
   template:
     metadata:
       annotations:
+        sidecar.istio.io/inject: "false"
         dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 3.1.0.0593
