@@ -11,7 +11,7 @@ curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-o
 
 echo ""
 
-read -p "Please enter your Dynatrace Environment ID (ex. https://ENVIRONMENT_ID>.sprint.dynatracelabs.com): " ENVIRONMENT_ID
+read -p "Please enter your Dynatrace Environment ID (ex. https://<ENVIRONMENT_ID>.sprint.dynatracelabs.com): " ENVIRONMENT_ID
 echo ""
 read -p "Environment ID = ${ENVIRONMENT_ID} . Is this correct? (y/n): " -n 1 -r
 
