@@ -7,7 +7,7 @@ EMAIL=$(grep "SOCKSHOP_EMAIL=" configs.txt | sed 's~SOCKSHOP_EMAIL=[ \t]*~~')
 FIRSTNAME=$(grep "SOCKSHOP_FIRSTNAME=" configs.txt | sed 's~SOCKSHOP_FIRSTNAME=[ \t]*~~') 
 LASTNAME_PRE=$(grep "SOCKSHOP_LASTNAME_PRE=" configs.txt | sed 's~SOCKSHOP_LASTNAME_PRE=[ \t]*~~')
 
-for i in {11..14}
+for i in {1..4}
 do
 	USERNAME=$USERNAME_PRE$i
 	LASTNAME=$LASTNAME_PRE$i

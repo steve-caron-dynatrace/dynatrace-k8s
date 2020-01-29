@@ -1,12 +1,8 @@
 {
-  "values": [
-    {
-      "id": "<SOCKSHOP_PRODUCTION_APP_ID>",
-      "name": "Sock Shop - Production"
-    },
-    {
-      "id": "<SOCKSHOP_DEV_APP_ID>",
-      "name": "Sock Shop - Dev"
-    }
-  ]
+  "applicationIdentifier": "<SOCKSHOP_APP_ID>",
+  "filterConfig": {
+    "pattern": "<SOCKSHOP_FRONTEND_DOMAIN>",
+    "applicationMatchType": "EQUALS",
+    "applicationMatchTarget": "DOMAIN"
+  }
 }

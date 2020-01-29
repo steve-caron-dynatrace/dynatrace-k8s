@@ -142,8 +142,8 @@
             ]
           },
           "simulateBlurEvent": true,
-          "textValue": "<SOCKSHOP_PASSWORD>",
-          "masked": false
+          "textValue": "U2FsdGVkX19dgIq6yo9BQ4/ZngINhhprBAGNiwLZFOA=",
+          "masked": true
         },
         {
           "type": "click",
