@@ -26,7 +26,7 @@ then
 	sed -i -r 's~DT_ENVIRONMENT_ID=(.*)~DT_ENVIRONMENT_ID\='"$DT_ENVIRONMENT_ID"'~' ./configs.txt
 	sed -i -r 's~DT_API_TOKEN=(.*)~DT_API_TOKEN\='"$DT_API_TOKEN"'~' ./configs.txt
 	sed -i -r 's~DT_PAAS_TOKEN=(.*)~DT_PAAS_TOKEN\='"$DT_PAAS_TOKEN"'~' ./configs.txt
-	sed -i -r 's~DT_CONFIG_TOKEN=(.*)~DT_CONFIG_TOKEN\='"$DT_CONFIG_TOKEN"'~' ./configs.txt
+	sed -i -r 's~DT_CONFIG_TOKEN=(.*)~DT_CONFIG_TOKEN\='"$CONFIG_TOKEN"'~' ./configs.txt
 
 fi
 
