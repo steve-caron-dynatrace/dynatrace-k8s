@@ -1,5 +1,5 @@
 {
-  "name": "Sock Shop - Production2",
+  "name": "<SOCK_SHOP_WEBAPP_NAME>",
   "type": "AUTO_INJECTED",
   "realUserMonitoringEnabled": true,
   "costControlUserSessionPercentage": 100,
