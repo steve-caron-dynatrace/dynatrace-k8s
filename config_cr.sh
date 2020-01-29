@@ -11,15 +11,16 @@ curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-o
 
 echo ""
 
-read -p "Please enter your Dynatrace Environment ID (ex. https://<ENVIRONMENT_ID>.sprint.dynatracelabs.com): " ENVIRONMENT_ID
-echo ""
-read -p "Environment ID = ${ENVIRONMENT_ID} . Is this correct? (y/n): " -n 1 -r
+ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
 
-if [[ $REPLY =~ ^[Yy]$ ]] 
+if [ -n "$ENVIRONMENT_ID" ] 
 then
+	echo -e "${YLW}Creating the Custom Resource definition file...${NC}"
 	sed -i "s/ENVIRONMENTID.live.dynatrace.com/$ENVIRONMENT_ID.sprint.dynatracelabs.com/" cr.yaml
-	echo ""  
-	echo -e "${YLM}Your Operator Custom Resource definition file is: cr.yaml${NC}"
+        echo ""	
+	echo -e "${YLW}Your Operator Custom Resource definition file is: ${NC}cr.yaml"
+else
+	echo -e "${YLW}ERROR: ${NC}Could not find a value for DT_ENVIRONMENT_ID in configs.txt file." 
 fi
 
 echo ""
