@@ -426,7 +426,7 @@
         "product:sockshop"
     ],
     "manuallyAssignedApps": [
-      "<SOCKSHOP_WEB_APP_ID>"    
+	"<SOCKSHOP_WEB_APP_ID>"
     ],
     "keyPerformanceMetrics": {
       "loadActionKpm": "VISUALLY_COMPLETE",

@@ -10,18 +10,18 @@ SOCKSHOP_WEBAPP_CONFIG=$(cat ./dynatrace-config/sockshop_webapp_template.json | 
 
 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SOCKSHOP_WEBAPP_CONFIG" $DT_API_URL/config/v1/applications/web) 
 
-if [ $RESPONSE ?? 'error']; then
+if [[ $RESPONSE == *"error"* ]]; then
     echo $RESPONSE
 else
     PRODUCTION_APPLICATION_ID=$(echo $RESPONSE | grep -oP '(?<="id":")[^"]*')
 
     #create web app for dev and get id
-    SOCKSHOP_PRODUCTION_WEBAPP_CONFIG=$(cat ./dynatrace-config/sockshop_webapp_template.json | sed "s/<SOCK_SHOP_WEBAPP_NAME>/Sock Shop - Dev/")
+    SOCKSHOP_WEBAPP_CONFIG=$(cat ./dynatrace-config/sockshop_webapp_template.json | sed "s/<SOCK_SHOP_WEBAPP_NAME>/Sock Shop - Dev/")
 
     RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SOCKSHOP_WEBAPP_CONFIG" $DT_API_URL/config/v1/applications/web)
     
-    if [ $RESPONSE ?? 'error']; then
-        echo $RESPONSE
+    if [[ $RESPONSE == *"error"* ]]; then
+    	echo $RESPONSE
     else
         DEV_APPLICATION_ID=$(echo $RESPONSE | grep -oP '(?<="id":")[^"]*')
 
@@ -44,25 +44,25 @@ else
 
         RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
 
-        if [ $RESPONSE ?? 'error']; then
+        if [[ $RESPONSE == *"error"* ]]; then
             echo $RESPONSE
         else
             #create synthetic tests (4)
 
             USERNAME_PRE=$(grep "SOCKSHOP_USERNAME_PRE=" configs.txt | sed 's~SOCKSHOP_USERNAME_PRE=[ \t]*~~')
 
-            SYNTHETIC_CONFIG=$(cat ./dynatrace/sockshop_synthetic_template.json | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop/" | \
-                sed "s/<SOCKSHOP_FRONTEND_URL>/Sock Shop/" | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/")
-
+            SYNTHETIC_CONFIG=$(cat ./dynatrace-config/sockshop_synthetic_template.json | sed "s/<SOCKSHOP_FRONTEND_URL>/http:\/\/$PROD_FRONTEND_DOMAIN:8080/" | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/" )
+	   # | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/")
+	    sleep 5 
             for i in {1..4}
             do
-                SYNTHETIC_CONFIG=$(echo $SYNTHETIC_CONFIG) | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
+                SYNTHETIC_CONFIG_NEW=$(echo $SYNTHETIC_CONFIG | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop - $i/" | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
 
-                RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG" $DT_API_URL/v1/synthetic/monitors)
+                RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG_NEW" $DT_API_URL/v1/synthetic/monitors)
 
             done
 
-            if [ $RESPONSE ?? 'error']; then
+            if [[ $RESPONSE == *"error"* ]]; then
                 echo $RESPONSE
             fi
         fi
