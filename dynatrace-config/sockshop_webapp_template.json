@@ -113,5 +113,12 @@
         "additionalEventCapturedAsUserInput": ""
       }
     }
-  }
+  },
+  "userActionNamingSettings": {
+    "placeholders": [],     
+    "loadActionNamingRules": [],     
+    "xhrActionNamingRules": [],     
+    "ignoreCase": true,     
+    "splitUserActionsByDomain": true   
+  } 
 }
