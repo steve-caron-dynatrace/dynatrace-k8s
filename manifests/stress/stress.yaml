@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stress
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stress
+    spec:
+      containers:
+      - name: stress
+        image: progrium/stress
+        env:
+        - name: CPU
+          value: "--cpu 4"
+        - name: TIMEOUT
+          value: "--timeout 60" 
+        args: ["$(CPU) $(TIMEOUT)]
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+
