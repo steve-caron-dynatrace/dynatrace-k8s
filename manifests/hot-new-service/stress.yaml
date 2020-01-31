@@ -2,14 +2,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: stress
+  name: hot-new-service
   namespace: default
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: stress
+        app: hot-new-service
     spec:
       containers:
       - name: stress
