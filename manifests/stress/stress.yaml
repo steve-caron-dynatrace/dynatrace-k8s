@@ -16,10 +16,10 @@ spec:
         image: progrium/stress
         env:
         - name: CPU
-          value: "--cpu 4"
-        - name: TIMEOUT
-          value: "--timeout 60" 
-        args: ["$(CPU) $(TIMEOUT)]
+          value: "4"
+        args:
+          - --cpu
+          - "$(CPU)"
       nodeSelector:
         beta.kubernetes.io/os: linux
 
