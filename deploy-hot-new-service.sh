@@ -3,11 +3,9 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
-echo -e "{YLW}Deploying Sock Shop pods in dev and production...${NC}"
+echo -e "{YLW}Deploying a brand hot new service!!!${NC}"
 
-kubectl create namespace guestbook
-
-kubectl apply -f guestbook-app/
+kubectl apply -f manifest/
 
 kubectl -n guestbook create rolebinding default-view --clusterrole=view --serviceaccount=guestbook:default
 
