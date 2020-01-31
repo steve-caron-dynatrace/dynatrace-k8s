@@ -17,3 +17,5 @@ kubectl apply -f manifests/backend-services/orders-db/
 kubectl apply -f manifests/sockshop-app/dev/
 kubectl apply -f manifests/sockshop-app/production/
 
+#start dev carts load 
+nohup ./carts-load.sh &
