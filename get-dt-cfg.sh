@@ -6,14 +6,14 @@ NC='\033[0m'
 echo -e "${YLW}Please enter your Dynatrace credentials as requested below: ${NC}"
 read -p "Environment ID (ex. https://<ENVIRONMENT_ID>.sprint.dynatracelabs.com): " ENVIRONMENT_ID
 read -p "API token: " API_TOKEN
-read -p "Config token: " CONFIG_TOKEN
 read -p "PaaS token: " PAAS_TOKEN
+read -p "Config token: " CONFIG_TOKEN
 echo ""
 echo -e "${YLW}Please confirm these are correct: ${NC}"
 echo "Environment ID: " $ENVIRONMENT_ID
 echo "API token: " $API_TOKEN
-echo "Config token: " $CONFIG_TOKEN 
 echo "PaaS token: " $PAAS_TOKEN
+echo "Config token: " $CONFIG_TOKEN 
  
 read -p "Is this correct? (y/n): " -n 1 -r
 

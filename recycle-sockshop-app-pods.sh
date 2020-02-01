@@ -30,10 +30,10 @@ kubectl scale --replicas=0 deployment/shipping -n production
 kubectl scale --replicas=0 deployment/user -n dev
 kubectl scale --replicas=0 deployment/user -n production
 
-echo -e "{YLW}Scaling down deployments to 0 replica...${NC}"
-kubectl get deployment --all-namespaces -l product=sockshop
+echo -e "${YLW}Scaling down deployments to 0 replica...${NC}"
 sleep 30s
-echo -e "{YLW}Scaling back up deployments...${NC}"
+kubectl get deployment --all-namespaces -l product=sockshop
+echo -e "${YLW}Scaling back up deployments...${NC}"
 
 kubectl scale --replicas=1 deployment/carts -n dev
 kubectl scale --replicas=1 deployment/carts -n production

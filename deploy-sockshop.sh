@@ -3,7 +3,7 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
-echo -e "{YLW}Deploying Sock Shop pods in dev and production...${NC}"
+echo -e "${YLW}Deploying Sock Shop pods in dev and production...${NC}"
 
 kubectl create -f manifests/k8s-namespaces.yml
 
