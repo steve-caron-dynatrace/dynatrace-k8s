@@ -1,0 +1,11 @@
+spec:
+  template:
+    metadata:
+      annotations:
+        pipeline.build: 2.4.0.0832
+      labels:
+        version: "2.4"
+    spec:
+      containers:
+      - name: carts
+        image: wmsegar/carts:3.0
