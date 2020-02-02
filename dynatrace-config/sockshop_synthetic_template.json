@@ -421,10 +421,6 @@
         "thresholds": []
       }
     },
-    "tags": [
-        "stage:production",
-        "product:sockshop"
-    ],
     "manuallyAssignedApps": [
 	"<SOCKSHOP_WEB_APP_ID>"
     ],
