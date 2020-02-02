@@ -4,8 +4,14 @@ kind: Deployment
 metadata:
   name: carts
   namespace: dev
+  labels:
+    app: carts
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: carts
+      version: "2.3"
   template:
     metadata:
       annotations:
@@ -20,7 +26,7 @@ spec:
         app: carts
         stage: dev
         release: stable
-        version: "2.4"
+        version: "2.3"
         tier: "business"
         product: "sockshop"
     spec:

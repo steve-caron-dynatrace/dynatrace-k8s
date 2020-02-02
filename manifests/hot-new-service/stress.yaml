@@ -1,22 +1,39 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hot-new-service
   namespace: default
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: hot-new-service
+  replicas: 2 
   template:
     metadata:
       labels:
         app: hot-new-service
     spec:
+      affinity:
+        podAntiAffinity: 
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - hot-new-service
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: stress
         image: progrium/stress
         env:
         - name: CPU
           value: "4"
+        - name: VM_BYTES
+          value: "8G"
+        - name: VM
+          value: "2" 
         args:
           - --cpu
           - "$(CPU)"
