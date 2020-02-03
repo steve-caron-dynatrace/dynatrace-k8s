@@ -25,7 +25,7 @@ spec:
                 - hot-new-service
             topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: stress
+      - name: hot-new-service 
         image: progrium/stress
         env:
         - name: CPU

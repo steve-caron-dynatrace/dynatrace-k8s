@@ -52,11 +52,11 @@ else
             USERNAME_PRE=$(grep "SOCKSHOP_USERNAME_PRE=" configs.txt | sed 's~SOCKSHOP_USERNAME_PRE=[ \t]*~~')
 
             SYNTHETIC_CONFIG=$(cat ./dynatrace-config/sockshop_synthetic_template.json | sed "s/<SOCKSHOP_FRONTEND_URL>/http:\/\/$PROD_FRONTEND_DOMAIN:8080/" | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/" )
-	   # | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/")
-	    sleep 5 
+	     
             for i in {1..4}
             do
-                SYNTHETIC_CONFIG_NEW=$(echo $SYNTHETIC_CONFIG | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop - $i/" | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
+                sleep 15s
+		SYNTHETIC_CONFIG_NEW=$(echo $SYNTHETIC_CONFIG | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop - $i/" | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
 
                 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG_NEW" $DT_API_URL/v1/synthetic/monitors)
 
