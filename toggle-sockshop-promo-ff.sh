@@ -12,7 +12,7 @@ if [[ $REPLY =~ ^[12]$ ]]
 then
     if [[ $REPLY =~ ^1$ ]]
     then
-            RATE=50
+            RATE=100
     else
             RATE=0
     fi
