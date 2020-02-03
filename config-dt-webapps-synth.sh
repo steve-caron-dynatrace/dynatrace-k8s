@@ -8,6 +8,14 @@ DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONME
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" configs.txt | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 SOCKSHOP_WEBAPP_CONFIG=$(cat ./dynatrace-config/sockshop_webapp_template.json | sed "s/<SOCK_SHOP_WEBAPP_NAME>/Sock Shop - Production/")
 
+AUTOTAG_PRODUCT_CONFIG=$(cat ./dynatrace-config/tagging_rule_product.json)
+AUTOTAG_STAGE_CONFIG=$(cat ./dynatrace-config/tagging_rule_stage.json)
+
+RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$AUTOTAG_PRODUCT_CONFIG" $DT_API_URL/config/v1/autoTags) 
+echo $RESPONSE
+RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$AUTOTAG_STAGE_CONFIG" $DT_API_URL/config/v1/autoTags)
+echo $RESPONSE 
+
 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SOCKSHOP_WEBAPP_CONFIG" $DT_API_URL/config/v1/applications/web) 
 
 if [[ $RESPONSE == *"error"* ]]; then
