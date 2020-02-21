@@ -16,7 +16,7 @@ ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONMENT_I
 if [ -n "$ENVIRONMENT_ID" ] 
 then
 	echo -e "${YLW}Creating the Custom Resource definition file...${NC}"
-	sed -i "s/ENVIRONMENTID.live.dynatrace.com/$ENVIRONMENT_ID.sprint.dynatracelabs.com/" cr.yaml
+	sed -i "s/ENVIRONMENTID.live.dynatrace.com/$ENVIRONMENT_ID.live.dynatrace.com/" cr.yaml
         echo ""	
 	echo -e "${YLW}Your Operator Custom Resource definition file is: ${NC}cr.yaml"
 else
