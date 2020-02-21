@@ -4,7 +4,7 @@ YLW='\033[1;33m'
 NC='\033[0m'
 
 
-DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').sprint.dynatracelabs.com/api
+DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').live.dynatrace.com/api
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" configs.txt | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 SOCKSHOP_WEBAPP_CONFIG=$(cat ./dynatrace-config/sockshop_webapp_template.json | sed "s/<SOCK_SHOP_WEBAPP_NAME>/Sock Shop - Production/")
 
