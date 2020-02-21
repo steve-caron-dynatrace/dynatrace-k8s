@@ -63,7 +63,7 @@ else
 	     
             for i in {1..4}
             do
-                sleep 15s
+                sleep 30s
 		SYNTHETIC_CONFIG_NEW=$(echo $SYNTHETIC_CONFIG | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop - $i/" | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
 
                 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG_NEW" $DT_API_URL/v1/synthetic/monitors)
