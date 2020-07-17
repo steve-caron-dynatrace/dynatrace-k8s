@@ -5,7 +5,7 @@ metadata:
   labels:
     io.kompose.service: user-db-mongodata
   name: user-db-mongodata
-  namespace: production
+  namespace: sockshop-production
 spec:
   accessModes:
   - ReadWriteOnce
@@ -14,15 +14,23 @@ spec:
       storage: 100Mi
 status: {}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: user-db
   name: user-db
-  namespace: production
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      io.kompose.service: user-db
+      name: user-db
+      stage: prod
+      version: "2.0"
+      tier: data
+      product: sockshop
   replicas: 1
   strategy:
     type: Recreate
@@ -76,7 +84,7 @@ metadata:
   labels:
     io.kompose.service: user-db
   name: user-db
-  namespace: production
+  namespace: sockshop-production
 spec:
   ports:
   - name: "27017"

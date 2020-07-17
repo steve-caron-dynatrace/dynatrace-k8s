@@ -1,12 +1,19 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: catalogue-db
   labels:
     name: catalogue-db
-  namespace: dev
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      name: catalogue-db
+      stage: dev
+      version: "2.0"
+      tier: data
+      product: sockshop
   replicas: 1
   template:
     metadata:
@@ -25,12 +32,12 @@ spec:
         tier: data
         product: sockshop
     spec:
+      serviceAccountName: mysql
       containers:
       - name: catalogue-db
         image: dynatracesockshop/catalogue-db
         securityContext:
           privileged: true
-          runAsUser: 0
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
@@ -46,7 +53,7 @@ metadata:
   name: catalogue-db
   labels:
     name: catalogue-db
-  namespace: dev
+  namespace: sockshop-dev
 spec:
   ports:
   - port: 3306
@@ -55,14 +62,21 @@ spec:
     name: catalogue-db
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: catalogue-db
   labels:
     name: catalogue-db
-  namespace: production
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      name: catalogue-db
+      stage: prod
+      version: "1.4"
+      tier: data
+      product: sockshop
   replicas: 1
   template:
     metadata:
@@ -81,12 +95,12 @@ spec:
         tier: data
         product: sockshop
     spec:
+      serviceAccountName: mysql
       containers:
       - name: catalogue-db
         image: dynatracesockshop/catalogue-db
         securityContext:
           privileged: true
-          runAsUser: 0
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
@@ -102,7 +116,7 @@ metadata:
   name: catalogue-db
   labels:
     name: catalogue-db
-  namespace: production
+  namespace: sockshop-production
 spec:
   ports:
   - port: 3306

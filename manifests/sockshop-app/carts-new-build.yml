@@ -1,9 +1,9 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carts
-  namespace: dev
+  namespace: sockshop-dev
   labels:
     app: carts
 spec:
@@ -74,7 +74,7 @@ metadata:
   name: carts
   labels:
     app: carts
-  namespace: dev
+  namespace: sockshop-dev
 spec:
   ports:
   - name: http

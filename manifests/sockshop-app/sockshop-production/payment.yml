@@ -1,31 +1,39 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user
-  namespace: dev
+  name: payment
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      app: payment
+      stage: prod
+      release: stable
+      version: "1.0"
+      tier: "business"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-        pipeline.stage: dev
-        pipeline.build: 1.5.0.0073
+        pipeline.stage: prod-stable
+        pipeline.build: 1.0.1.3243
         pipeline.project: sockshop
-        support.contact: "tony.stark@sockshop.com"
+        support.contact: "john.doe@sockshop.com"
         support.channel: "#support-sockshop-services"
       labels:
-        app: user
-        stage: dev
+        app: payment
+        stage: prod
         release: stable
-        version: "1.5"
+        version: "1.0"
         tier: "business"
         product: "sockshop"
     spec:
       containers:
-      - name: user
-        image: dynatracesockshop/user:0.5.0
+      - name: payment
+        image: dynatracesockshop/payment:0.5.0
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -56,14 +64,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user
+  name: payment
   labels:
-    app: user
-  namespace: dev
+    app: payment
+  namespace: sockshop-production
 spec:
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
-    app: user
+    app: payment

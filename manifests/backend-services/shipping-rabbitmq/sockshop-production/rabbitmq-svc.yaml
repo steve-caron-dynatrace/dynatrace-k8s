@@ -5,7 +5,7 @@ metadata:
   name: rabbitmq
   labels:
     name: rabbitmq
-  namespace: dev
+  namespace: sockshop-production
 spec:
   ports:
     # the port that this service should serve on
@@ -16,5 +16,7 @@ spec:
     name: exporter
     targetPort: exporter
     protocol: TCP
+  - port: 4369
+    name: epmd
   selector:
     name: rabbitmq

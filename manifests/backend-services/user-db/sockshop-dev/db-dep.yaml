@@ -1,12 +1,17 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: user-db
   name: user-db
-  namespace: dev
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      io.kompose.service: user-db
+      tier: data
+      stage: dev
   replicas: 1
   strategy:
     type: Recreate

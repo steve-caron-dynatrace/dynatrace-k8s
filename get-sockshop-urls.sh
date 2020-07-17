@@ -8,10 +8,10 @@ DIFF=0
 # while not all public urls are available or more than 6 minutes have elapsed
 while ( [ -z $PROD_FRONTEND_URL ] || [ -z $PROD_CARTS_URL ] || [ -z $DEV_FRONTEND_URL ] || [ -z $DEV_CARTS_URL ] ) && [ $DIFF -lt 360 ];
 do
-  PROD_FRONTEND_URL=http://$(kubectl describe svc front-end -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//'):8080
-  PROD_CARTS_URL=http://$(kubectl describe svc carts -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
-  DEV_FRONTEND_URL=http://$(kubectl describe svc front-end -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//'):8080
-  DEV_CARTS_URL=http://$(kubectl describe svc carts -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+  PROD_FRONTEND_URL=http://$(kubectl describe svc front-end -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//'):8080
+  PROD_CARTS_URL=http://$(kubectl describe svc carts -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+  DEV_FRONTEND_URL=http://$(kubectl describe svc front-end -n sockshop-dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//'):8080
+  DEV_CARTS_URL=http://$(kubectl describe svc carts -n sockshop-dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
   echo -n .
   sleep 4
   NOW=$(date +%s)

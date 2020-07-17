@@ -1,34 +1,39 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orders
-  namespace: dev
+  name: user
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      app: user
+      stage: prod
+      release: stable
+      version: "1.4"
+      tier: "business"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-        pipeline.stage: dev
-        pipeline.build: 1.1.0.1578
+        pipeline.stage: prod-stable
+        pipeline.build: 1.4.1.0365
         pipeline.project: sockshop
-        support.contact: "john.doe@sockshop.com"
+        support.contact: "tony.stark@sockshop.com"
         support.channel: "#support-sockshop-services"
       labels:
-        app: orders
-        stage: dev
+        app: user
+        stage: prod
         release: stable
-        version: "1.1"
+        version: "1.4"
         tier: "business"
         product: "sockshop"
     spec:
       containers:
-      - name: orders
-        image: dynatracesockshop/orders:0.5.0
-        env:
-        - name: JAVA_OPTS
-          value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+      - name: user
+        image: dynatracesockshop/user:0.5.0
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -38,7 +43,7 @@ spec:
           httpGet:
             path: /health
             port: 8080
-          initialDelaySeconds: 240
+          initialDelaySeconds: 120
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
@@ -46,7 +51,6 @@ spec:
           httpGet:
             path: /health
             port: 8080
-          initialDelaySeconds: 240
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
@@ -60,14 +64,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: orders
+  name: user
   labels:
-    app: orders
-  namespace: dev
+    app: user
+  namespace: sockshop-production
 spec:
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
-    app: orders
+    app: user

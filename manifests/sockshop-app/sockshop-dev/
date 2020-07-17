@@ -1,31 +1,36 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
-  namespace: dev
+  name: queue-master
+  namespace: sockshop-dev
 spec:
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
+        dynatrace/instrument: "false"
         pipeline.stage: dev
-        pipeline.build: 3.1.1.0435
+        pipeline.build: 1.0.1.0253
         pipeline.project: sockshop
-        support.contact: "john.doe@sockshop.com"
-        support.channel: "#support-sockshop-services"
+        support.contact: "jimmy.page@sockshop.com"
+        support.channel: "#support-sockshop-middleware"
       labels:
-        app: catalogue
+        app: queue-master
         stage: dev
         release: stable
-        version: "3.1"
-        tier: "business"
+        version: "1.0"
+        tier: "messaging"
         product: "sockshop"
     spec:
       containers:
-      - name: catalogue
-        image: dynatracesockshop/catalogue:0.5.0
+      - name: queue-master
+        image: dynatracesockshop/queue-master:0.5.0
+        env:
+        - name: JAVA_OPTS
+          value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+        resources:
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -37,15 +42,14 @@ spec:
             port: 8080
           initialDelaySeconds: 120
           periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+          timeoutSeconds: 15
         readinessProbe:
           httpGet:
             path: /health
             port: 8080
+          initialDelaySeconds: 120
           periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+          timeoutSeconds: 15
       volumes:
         - name: tmp-volume
           emptyDir:
@@ -56,14 +60,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: queue-master
   labels:
-    app: catalogue
-  namespace: dev
+    app: queue-master
+  namespace: sockshop-dev
 spec:
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
-    app: catalogue
+    app: queue-master

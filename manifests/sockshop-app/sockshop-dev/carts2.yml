@@ -1,10 +1,18 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carts
-  namespace: dev
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      app: carts
+      stage: dev
+      release: stable
+      version: "2.3"
+      tier: "business"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
@@ -68,7 +76,7 @@ metadata:
   name: carts
   labels:
     app: carts
-  namespace: dev
+  namespace: sockshop-dev
 spec:
   ports:
   - name: http
