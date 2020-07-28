@@ -1,31 +1,39 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user
-  namespace: production
+  name: catalogue
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      app: catalogue
+      stage: dev
+      release: stable
+      version: "3.1"
+      tier: "business"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-        pipeline.stage: prod-stable
-        pipeline.build: 1.4.1.0365
+        pipeline.stage: dev
+        pipeline.build: 3.1.1.0435
         pipeline.project: sockshop
-        support.contact: "tony.stark@sockshop.com"
+        support.contact: "john.doe@sockshop.com"
         support.channel: "#support-sockshop-services"
       labels:
-        app: user
-        stage: prod
+        app: catalogue
+        stage: dev
         release: stable
-        version: "1.4"
+        version: "3.1"
         tier: "business"
         product: "sockshop"
     spec:
       containers:
-      - name: user
-        image: dynatracesockshop/user:0.5.0
+      - name: catalogue
+        image: dynatracesockshop/catalogue:0.5.0
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -56,14 +64,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user
+  name: catalogue
   labels:
-    app: user
-  namespace: production
+    app: catalogue
+  namespace: sockshop-dev
 spec:
   ports:
   - name: http
     port: 80
     targetPort: 8080
   selector:
-    app: user
+    app: catalogue

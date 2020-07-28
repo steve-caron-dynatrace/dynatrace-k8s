@@ -1,10 +1,19 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq
-  namespace: production
+  labels:
+    name: rabbitmq
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      name: rabbitmq
+      stage: dev
+      version: "1.0"
+      tier: messaging
+      product: sockshop
   replicas: 1
   template:
     metadata:
@@ -12,21 +21,21 @@ spec:
         sidecar.istio.io/inject: "false"
         prometheus.io/scrape: "false"
         dynatrace/instrument: "false"
-        pipeline.stage: prod-stable
-        pipeline.build: 1.0.1.0005
+        pipeline.stage: dev
+        pipeline.build: 1.0.2.0114
         pipeline.project: sockshop
         support.contact: "jimmy.page@sockshop.com"
         support.channel: "#support-sockshop-middleware"
       labels:
         name: rabbitmq
-        stage: prod
+        stage: dev
         version: "1.0"
         tier: messaging
         product: sockshop
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.7-management
+        image: rabbitmq:3.6.8-management
         ports:
         - containerPort: 15672
           name: management

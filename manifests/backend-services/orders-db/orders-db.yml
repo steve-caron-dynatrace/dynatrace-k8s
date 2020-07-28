@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: orders-db-mongodata
-  namespace: dev
+  namespace: sockshop-dev
 spec:
   accessModes:
   - ReadWriteOnce
@@ -12,12 +12,19 @@ spec:
       storage: 100Mi
 status: {}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: orders-db
-  namespace: dev
+  namespace: sockshop-dev
 spec:
+  selector:
+    matchLabels:
+      name: orders-db
+      stage: dev
+      version: "1.1"
+      tier: data
+      product: sockshop
   replicas: 1
   strategy:
     type: Recreate
@@ -66,7 +73,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: orders-db
-  namespace: dev
+  namespace: sockshop-dev
 spec:
   ports:
   - name: "27017"
@@ -79,7 +86,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: orders-db-mongodata
-  namespace: production
+  namespace: sockshop-production
 spec:
   accessModes:
   - ReadWriteOnce
@@ -88,12 +95,19 @@ spec:
       storage: 100Mi
 status: {}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: orders-db
-  namespace: production
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      name: orders-db
+      stage: prod
+      version: "1.0"
+      tier: data
+      product: sockshop
   replicas: 1
   strategy:
     type: Recreate
@@ -142,7 +156,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: orders-db
-  namespace: production
+  namespace: sockshop-production
 spec:
   ports:
   - name: "27017"

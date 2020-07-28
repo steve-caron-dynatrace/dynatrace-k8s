@@ -1,23 +1,31 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: queue-master
-  namespace: dev
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      app: queue-master
+      stage: prod
+      release: stable
+      version: "1.0"
+      tier: "messaging"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-        pipeline.stage: dev
-        pipeline.build: 1.0.1.0253
+        pipeline.stage: prod-stable
+        pipeline.build: 1.0.0.0323
         pipeline.project: sockshop
         support.contact: "jimmy.page@sockshop.com"
         support.channel: "#support-sockshop-middleware"
       labels:
         app: queue-master
-        stage: dev
+        stage: prod
         release: stable
         version: "1.0"
         tier: "messaging"
@@ -61,7 +69,7 @@ metadata:
   name: queue-master
   labels:
     app: queue-master
-  namespace: dev
+  namespace: sockshop-production
 spec:
   ports:
   - name: http

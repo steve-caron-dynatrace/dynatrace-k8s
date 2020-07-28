@@ -3,15 +3,15 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
-echo -e "${YLW}Deploying Sock Shop pods in dev and production...${NC}"
+echo -e "${YLW}Deploying Sock Shop pods in sockshop-dev and sockshop-production...${NC}"
 
 kubectl create -f manifests/k8s-namespaces.yml
 
-kubectl apply -f manifests/backend-services/user-db/dev/
-kubectl apply -f manifests/backend-services/user-db/production/
+kubectl apply -f manifests/backend-services/user-db/sockshop-dev/
+kubectl apply -f manifests/backend-services/user-db/sockshop-production/
 
-kubectl apply -f manifests/backend-services/shipping-rabbitmq/dev/
-kubectl apply -f manifests/backend-services/shipping-rabbitmq/production/
+kubectl apply -f manifests/backend-services/shipping-rabbitmq/sockshop-dev/
+kubectl apply -f manifests/backend-services/shipping-rabbitmq/sockshop-production/
 
 kubectl apply -f manifests/backend-services/carts-db/
 
@@ -19,8 +19,8 @@ kubectl apply -f manifests/backend-services/catalogue-db/
 
 kubectl apply -f manifests/backend-services/orders-db/
 
-kubectl apply -f manifests/sockshop-app/dev/
-kubectl apply -f manifests/sockshop-app/production/
+kubectl apply -f manifests/sockshop-app/sockshop-dev/
+kubectl apply -f manifests/sockshop-app/sockshop-production/
 
 echo -e "${YLW}Waiting about 5 minutes for all pods to become ready...${NC}"
 sleep 330s

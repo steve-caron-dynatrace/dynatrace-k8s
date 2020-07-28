@@ -1,39 +1,49 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
-  namespace: production
+  name: front-end
+  namespace: sockshop-production
 spec:
+  selector:
+    matchLabels:
+      app: front-end
+      stage: prod
+      release: stable
+      version: v1
+      tier: "frontend"
+      product: "sockshop"
   replicas: 1
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
         pipeline.stage: prod-stable
-        pipeline.build: 3.1.0.0593
+        pipeline.build: 1.4.0.7424
         pipeline.project: sockshop
-        support.contact: "john.doe@sockshop.com"
-        support.channel: "#support-sockshop-services"
+        support.contact: "jane.smith@sockshop.com"
+        support.channel: "#support-sockshop-frontend"
       labels:
-        app: catalogue
+        app: front-end
         stage: prod
         release: stable
-        version: "3.1"
-        tier: "business"
+        version: v1
+        tier: "frontend"
         product: "sockshop"
     spec:
       containers:
-      - name: catalogue
-        image: dynatracesockshop/catalogue:0.5.0
+      - name: front-end
+        image: dynatracesockshop/front-end:0.5.0
+        env:
+        - name: DT_TAGS
+          value: "MyFirstTag=Tag1Value MySecondTag=Tag2Value"
+        - name: DT_CUSTOM_PROP
+          value: "MyProp1=Prop1Value MyProd2=Prop2Value"
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - mountPath: /tmp
-          name: tmp-volume
         livenessProbe:
           httpGet:
-            path: /health
+            path: /
             port: 8080
           initialDelaySeconds: 120
           periodSeconds: 10
@@ -41,29 +51,27 @@ spec:
           timeoutSeconds: 1
         readinessProbe:
           httpGet:
-            path: /health
+            path: /
             port: 8080
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-      volumes:
-        - name: tmp-volume
-          emptyDir:
-            medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: front-end
   labels:
-    app: catalogue
-  namespace: production
+    app: front-end
+  namespace: sockshop-production
 spec:
   ports:
   - name: http
-    port: 80
+    port: 8080
     targetPort: 8080
   selector:
-    app: catalogue
+    app: front-end
+  type: LoadBalancer
