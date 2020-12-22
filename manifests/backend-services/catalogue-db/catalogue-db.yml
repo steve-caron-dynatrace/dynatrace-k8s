@@ -32,7 +32,6 @@ spec:
         tier: data
         product: sockshop
     spec:
-      serviceAccountName: mysql
       containers:
       - name: catalogue-db
         image: dynatracesockshop/catalogue-db
@@ -95,7 +94,6 @@ spec:
         tier: data
         product: sockshop
     spec:
-      serviceAccountName: mysql
       containers:
       - name: catalogue-db
         image: dynatracesockshop/catalogue-db
