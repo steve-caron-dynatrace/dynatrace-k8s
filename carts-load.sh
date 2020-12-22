@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CARTS_URL=$(kubectl describe svc carts -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')  
+export CARTS_URL=$(kubectl describe svc carts -n sockshop-dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')  
 
 i=0 
 while true 
