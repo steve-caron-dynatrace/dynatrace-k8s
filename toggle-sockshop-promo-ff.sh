@@ -16,7 +16,7 @@ then
     else
             RATE=0
     fi
-    PROD_CARTS_URL=http://$(kubectl describe svc carts -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//') 
+    PROD_CARTS_URL=http://$(kubectl describe svc carts -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//') 
     curl "$PROD_CARTS_URL/carts/1/items/promotion/$RATE"
 else
 echo ""

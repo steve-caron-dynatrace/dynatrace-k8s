@@ -37,8 +37,8 @@ else
         PROD_FRONTEND_URL=$(grep "PROD_FRONTEND_URL=" configs.txt | sed 's~PROD_FRONTEND_URL=[ \t]*~~')
         DEV_FRONTEND_URL=$(grep "DEV_FRONTEND_URL=" configs.txt | sed 's~DEV_FRONTEND_URL=[ \t]*~~')
 
-        PROD_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
-        DEV_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+        PROD_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+        DEV_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n sockshop-dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
 
         #production
         APP_DETECTION_RULE=$(cat ./dynatrace-config/application_detection_rules_template.json | sed "s/<SOCKSHOP_APP_ID>/$PRODUCTION_APPLICATION_ID/" | \
