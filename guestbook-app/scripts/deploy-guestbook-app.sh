@@ -7,7 +7,7 @@ echo -e "${YLW}Deploying Sock Shop pods in dev and production...${NC}"
 
 kubectl create namespace guestbook
 
-kubectl apply -f guestbook-app/
+kubectl apply -f ../manifests/
 
 kubectl -n guestbook create rolebinding default-view --clusterrole=view --serviceaccount=guestbook:default
 

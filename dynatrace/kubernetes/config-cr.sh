@@ -11,7 +11,7 @@ curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-o
 
 echo ""
 
-ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" configs.txt | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
+ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" ../dynatrace.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
 
 if [ -n "$ENVIRONMENT_ID" ] 
 then
@@ -20,7 +20,7 @@ then
         echo ""	
 	echo -e "${YLW}Your Operator Custom Resource definition file is: ${NC}cr.yaml"
 else
-	echo -e "${YLW}ERROR: ${NC}Could not find a value for DT_ENVIRONMENT_ID in configs.txt file." 
+	echo -e "${YLW}ERROR: ${NC}Could not find a value for DT_ENVIRONMENT_ID in dynatrace.conf file." 
 fi
 
 echo ""

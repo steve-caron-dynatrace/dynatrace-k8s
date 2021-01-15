@@ -5,7 +5,7 @@ NC='\033[0m'
 
 echo -e "${YLW}Deploying new Sock Shop carts build in dev...${NC}"
 
-kubectl apply -f manifests/sockshop-app/carts-new-build.yml
+kubectl apply -f ../sockshop/manifests/scenarios/carts-new-build.yml
 
 echo -e "${YLW}Waiting about 5 minutes for new build pods to become ready...${NC}"
 sleep 330s

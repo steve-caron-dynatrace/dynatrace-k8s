@@ -27,10 +27,10 @@ then
 	export DT_API_TOKEN=$API_TOKEN
 	export DT_PAAS_TOKEN=$PAAS_TOKEN
 
-	sed -i -r 's~DT_ENVIRONMENT_ID=(.*)~DT_ENVIRONMENT_ID\='"$DT_ENVIRONMENT_ID"'~' ./configs.txt
-	sed -i -r 's~DT_API_TOKEN=(.*)~DT_API_TOKEN\='"$DT_API_TOKEN"'~' ./configs.txt
-	sed -i -r 's~DT_PAAS_TOKEN=(.*)~DT_PAAS_TOKEN\='"$DT_PAAS_TOKEN"'~' ./configs.txt
-	sed -i -r 's~DT_CONFIG_TOKEN=(.*)~DT_CONFIG_TOKEN\='"$CONFIG_TOKEN"'~' ./configs.txt
+	sed -i -r 's~DT_ENVIRONMENT_ID=(.*)~DT_ENVIRONMENT_ID\='"$DT_ENVIRONMENT_ID"'~' ./dynatrace.conf
+	sed -i -r 's~DT_API_TOKEN=(.*)~DT_API_TOKEN\='"$DT_API_TOKEN"'~' ./dynatrace.conf
+	sed -i -r 's~DT_PAAS_TOKEN=(.*)~DT_PAAS_TOKEN\='"$DT_PAAS_TOKEN"'~' ./dynatrace.conf
+	sed -i -r 's~DT_CONFIG_TOKEN=(.*)~DT_CONFIG_TOKEN\='"$CONFIG_TOKEN"'~' ./dynatrace.conf
 
 fi
 
