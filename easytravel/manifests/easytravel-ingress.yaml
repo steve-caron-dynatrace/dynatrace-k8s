@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+  name: easytravel-ingress
+  namespace: easytravel
+spec:
+  rules:
+  - host: "*.elb.amazonaws.com"
+    #host: a72f2247d709b43f9843c9ec11ba7289-1611902496.ca-central-1.elb.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: easytravel-frontend
+          servicePort: 8080

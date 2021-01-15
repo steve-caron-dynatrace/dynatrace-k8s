@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: easytravel-pluginservice
+  name: easytravel-pluginservice
+  namespace: easytravel
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: easytravel-pluginservice
+  type: ClusterIP
