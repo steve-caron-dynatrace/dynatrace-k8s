@@ -14,8 +14,7 @@ spec:
       version: "2.3"
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "false"
+      annotations:    
         pipeline.stage: dev
         pipeline.build: 2.4.0.0832
         pipeline.project: sockshop

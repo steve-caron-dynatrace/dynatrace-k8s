@@ -17,7 +17,6 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
         pipeline.stage: prod-stable
         pipeline.build: 2.3.1.3476
         pipeline.project: sockshop

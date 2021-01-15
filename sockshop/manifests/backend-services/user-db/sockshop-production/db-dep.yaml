@@ -38,7 +38,7 @@ spec:
     metadata:
       creationTimestamp: null
       annotations:
-        sidecar.istio.io/inject: "false"
+        
         dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 2.0.2.1234

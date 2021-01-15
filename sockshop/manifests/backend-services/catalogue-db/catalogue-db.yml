@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
+        
         dynatrace/instrument: "false"
         pipeline.stage: dev
         pipeline.build: 2.0.0.6347
@@ -80,7 +80,7 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: "false"
+        
         dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 1.4.3.0054
