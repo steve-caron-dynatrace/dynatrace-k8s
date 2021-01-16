@@ -10,7 +10,7 @@ curl -o cr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-o
 
 echo ""
 
-ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" ../dynatrace.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
+ENVIRONMENT_ID=$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
 
 if [ -n "$ENVIRONMENT_ID" ] 
 then

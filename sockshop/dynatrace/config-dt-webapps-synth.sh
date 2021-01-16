@@ -4,7 +4,7 @@ YLW='\033[1;33m'
 NC='\033[0m'
 
 
-DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" ../dynatrace.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').live.dynatrace.com/api
+DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" ../dynatrace.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').sprint.dynatracelabs.com/api
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../dynatrace.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 SOCKSHOP_WEBAPP_CONFIG=$(cat ./sockshop_webapp_template.json | sed "s/<SOCK_SHOP_WEBAPP_NAME>/Sock Shop - Production/")
 
@@ -34,21 +34,18 @@ else
         DEV_APPLICATION_ID=$(echo $RESPONSE | grep -oP '(?<="id":")[^"]*')
 
         #create app detection rules
+
         PROD_FRONTEND_URL=$(grep "PROD_FRONTEND_URL=" ../dynatrace.conf | sed 's~PROD_FRONTEND_URL=[ \t]*~~')
-        DEV_FRONTEND_URL=$(grep "DEV_FRONTEND_URL=" ../dynatrace.conf | sed 's~DEV_FRONTEND_URL=[ \t]*~~')
 
-        PROD_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
-        DEV_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n sockshop-dev | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
-
+        if [ ! -z "$1" ] && [ "$1" == "-istio" ]
+          then
+            PROD_FRONTEND_DOMAIN=$(kubectl describe svc istio-ingressgateway -n istio-system | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+          else
+            PROD_FRONTEND_DOMAIN=$(kubectl describe svc front-end -n sockshop-production | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
+ 
         #production
         APP_DETECTION_RULE=$(cat ./application_detection_rules_template.json | sed "s/<SOCKSHOP_APP_ID>/$PRODUCTION_APPLICATION_ID/" | \
             sed "s/<SOCKSHOP_FRONTEND_DOMAIN>/$PROD_FRONTEND_DOMAIN/")
-
-        RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
-
-        #dev
-        APP_DETECTION_RULE=$(cat ./application_detection_rules_template.json | sed "s/<SOCKSHOP_APP_ID>/$DEV_APPLICATION_ID/" | \
-            sed "s/<SOCKSHOP_FRONTEND_DOMAIN>/$DEV_FRONTEND_DOMAIN/")
 
         RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
 
