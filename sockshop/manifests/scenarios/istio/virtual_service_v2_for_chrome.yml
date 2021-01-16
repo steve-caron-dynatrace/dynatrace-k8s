@@ -10,6 +10,12 @@ spec:
   - sockshop-gateway
   http:
   - match:
+    - uri:
+        prefix: "/carts"
+    route:
+    - destination:
+        host: carts
+  - match:
     - headers:
         user-agent:
           regex: ".*Chrome.*"
