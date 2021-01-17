@@ -22,6 +22,11 @@ else
 	echo -e "${YLW}ERROR: ${NC}Could not find a value for DT_ENVIRONMENT_ID in dynatrace.conf file." 
 fi
 
+if [ ! -z "$1" ] && [ "$1" == "-istio" ]
+then
+	sed -i "s/# enableIstio: false/enableIstio: true/" cr.yaml	
+fi
+
 echo ""
 
 
