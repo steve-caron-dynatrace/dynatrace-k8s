@@ -1,0 +1,248 @@
+{
+  "name": "<SOCKSHOP_TEST_NAME>",
+  "frequencyMin": 5,
+  "enabled": true,
+  "type": "BROWSER",
+  "script": {
+    "type": "clickpath",
+    "version": "1.0",
+    "configuration": {
+      "device": {
+        "deviceName": "Desktop",
+        "orientation": "landscape"
+      }
+    },
+    "events": [
+      {
+        "type": "navigate",
+        "description": "Loading of Home page",
+        "url": "<SOCKSHOP_FRONTEND_URL>",
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"Colourful\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "a:contains(\"Colourful\")"
+            },
+            {
+              "type": "css",
+              "value": "#hot-slider div div div:nth-child(2) div div div:nth-child(3) h3 a"
+            },
+            {
+              "type": "css",
+              "value": "#hot-slider div.owl-wrapper-outer div.owl-wrapper div.owl-item div.item div.product div.text h3 a:eq(1)"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"buttonCart\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#buttonCart"
+            },
+            {
+              "type": "css",
+              "value": "a:contains(\"Add to\n                                    cart\")"
+            },
+            {
+              "type": "css",
+              "value": ".btn:eq(4)"
+            },
+            {
+              "type": "css",
+              "value": "#productMain div:nth-child(2) div p:nth-child(4) a"
+            },
+            {
+              "type": "css",
+              "value": "#buttonCart"
+            },
+            {
+              "type": "css",
+              "value": "a#buttonCart.btn.btn-primary"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "network"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"numItemsInCart\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#numItemsInCart"
+            },
+            {
+              "type": "css",
+              "value": "a:contains(\"1 item(s) in cart\")"
+            },
+            {
+              "type": "css",
+              "value": "span:contains(\"in cart\")"
+            },
+            {
+              "type": "css",
+              "value": ".hidden-sm:eq(0)"
+            },
+            {
+              "type": "css",
+              "value": "#basket-overview a span:nth-child(2)"
+            },
+            {
+              "type": "css",
+              "value": "#numItemsInCart"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"orderButton\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#orderButton"
+            },
+            {
+              "type": "css",
+              "value": "button[type=\"submit\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[2][2]"
+            },
+            {
+              "type": "css",
+              "value": "button:contains(\"Proceed to checkout\")"
+            },
+            {
+              "type": "css",
+              "value": ".btn:eq(6)"
+            },
+            {
+              "type": "css",
+              "value": "#basket div form div:nth-child(4) div:nth-child(2) button:nth-child(2)"
+            },
+            {
+              "type": "css",
+              "value": "#orderButton"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click on \"numItemsInCart\"",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#numItemsInCart"
+            },
+            {
+              "type": "css",
+              "value": "a:contains(\"1 item(s) in cart\")"
+            },
+            {
+              "type": "css",
+              "value": "span:contains(\"in cart\")"
+            },
+            {
+              "type": "css",
+              "value": ".hidden-sm:eq(0)"
+            },
+            {
+              "type": "css",
+              "value": "#basket-overview a span:nth-child(2)"
+            },
+            {
+              "type": "css",
+              "value": "#numItemsInCart"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "click",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": ".fa:eq(3)"
+            },
+            {
+              "type": "css",
+              "value": "#cart-list tr td:nth-child(8) a i"
+            },
+            {
+              "type": "css",
+              "value": "#cart-list tr.item td a i.fa"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+            }
+          ]
+        },
+  "locations": [
+    "GEOLOCATION-9999453BE4BDB3CD",
+    "GEOLOCATION-E01B833216FC3598",
+    "GEOLOCATION-388A5AD15726CB6F"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "localOutage": true,
+      "localOutagePolicy": {
+        "affectedLocations": 1,
+        "consecutiveRuns": 3
+    },
+    "loadingTimeThresholds": {
+      "enabled": false,
+      "thresholds": []
+    }
+  },
+  "manuallyAssignedApps": [
+"<SOCKSHOP_WEB_APP_ID>"
+  ],
+  "keyPerformanceMetrics": {
+    "loadActionKpm": "VISUALLY_COMPLETE",
+    "xhrActionKpm": "USER_ACTION_DURATION"
+  }
+}
+}

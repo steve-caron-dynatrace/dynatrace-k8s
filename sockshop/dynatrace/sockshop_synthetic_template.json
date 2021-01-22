@@ -238,7 +238,7 @@
           },
           "button": 0,
           "wait": {
-            "waitFor": "page_complete"
+            "waitFor": "network"
           }
         },
         {
@@ -427,6 +427,6 @@
     ],
     "keyPerformanceMetrics": {
       "loadActionKpm": "VISUALLY_COMPLETE",
-      "xhrActionKpm": "VISUALLY_COMPLETE"
+      "xhrActionKpm": "USER_ACTION_DURATION"
     }
   }
