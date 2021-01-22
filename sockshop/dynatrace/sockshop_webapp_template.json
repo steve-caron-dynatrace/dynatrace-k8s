@@ -4,7 +4,7 @@
   "realUserMonitoringEnabled": true,
   "costControlUserSessionPercentage": 100,
   "loadActionKeyPerformanceMetric": "VISUALLY_COMPLETE",
-  "xhrActionKeyPerformanceMetric": "VISUALLY_COMPLETE",
+  "xhrActionKeyPerformanceMetric": "ACTION_DURATION",
   "loadActionApdexSettings": {
     "threshold": 3,
     "toleratedThreshold": 3000,
