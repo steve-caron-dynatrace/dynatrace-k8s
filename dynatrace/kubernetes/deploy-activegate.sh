@@ -3,6 +3,9 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
+echo -e "${YLW}Deploying Dynatrace ActiveGate...${NC}"
+echo ""
+
 TENANT_ID=$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
 DT_API_URL="https://$TENANT_ID.sprint.dynatracelabs.com"
 DT_PAAS_TOKEN=$(grep "DT_PAAS_TOKEN=" ../../configuration.conf | sed 's~DT_PAAS_TOKEN=[ \t]*~~')

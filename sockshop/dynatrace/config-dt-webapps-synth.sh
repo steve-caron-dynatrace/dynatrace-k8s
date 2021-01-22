@@ -3,6 +3,7 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
+echo -e "${YLW}Configuring Dynatrace for Sock Shop...${NC}"
 
 DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').sprint.dynatracelabs.com/api
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
@@ -11,10 +12,14 @@ SOCKSHOP_WEBAPP_CONFIG=$(cat ./sockshop_webapp_template.json | sed "s/<SOCK_SHOP
 AUTOTAG_PRODUCT_CONFIG=$(cat ./tagging_rule_product.json)
 AUTOTAG_STAGE_CONFIG=$(cat ./tagging_rule_stage.json)
 
+echo -e "${YLW}Creating auto-tagging rules...${NC}"
+
 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$AUTOTAG_PRODUCT_CONFIG" $DT_API_URL/config/v1/autoTags) 
 echo $RESPONSE
 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$AUTOTAG_STAGE_CONFIG" $DT_API_URL/config/v1/autoTags)
 echo $RESPONSE 
+
+echo -e "${YLW}Configuring Sock Shop Web Application...${NC}"
 
 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SOCKSHOP_WEBAPP_CONFIG" $DT_API_URL/config/v1/applications/web) 
 
@@ -42,6 +47,7 @@ else
         if [[ $RESPONSE == *"error"* ]]; then
             echo $RESPONSE
         else
+            echo -e "${YLW}Creating Sock Shop Synthetic Monitors...${NC}"
             #create synthetic tests (4 with users, 4 anonymous)
 
             USERNAME_PRE=$(grep "SOCKSHOP_USERNAME_PRE=" ../../configuration.conf | sed 's~SOCKSHOP_USERNAME_PRE=[ \t]*~~')
