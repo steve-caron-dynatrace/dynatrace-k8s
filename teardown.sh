@@ -25,6 +25,10 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 cd $CURRENT_DIR/easytravel/scripts
 ./delete_easytravel.sh
 
+## Remove Dynatrace configuration for EasyTravel
+cd $CURRENT_DIR/easytravel/dynatrace
+./delete-dt-webapps-configs.sh
+
 ## Delete Sock Shop app
 cd $CURRENT_DIR/sockshop/scripts
 ./delete-sockshop.sh
