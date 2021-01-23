@@ -13,7 +13,7 @@ cd $CURRENT_DIR/istio
 ## Deploy the OneAgent Operator
 
 cd $CURRENT_DIR/dynatrace/kubernetes
-./deploy_operator.sh
+./deploy-operator.sh
 
 ## Deploy ActiveGate
 ./deploy-activegate.sh
