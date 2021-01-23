@@ -24,6 +24,7 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 ## Deploy EasyTravel app
 cd $CURRENT_DIR/easytravel/scripts
 ./create_easytravel.sh
+./get-easytravel-urls.sh
 
 ## Deploy Sock Shop app
 cd $CURRENT_DIR/sockshop/scripts
