@@ -39,10 +39,10 @@ spec:
         resources:
           limits:
             cpu: 500m
-            memory: 2048Mi
+            memory: 1536Mi
           requests:
-            cpu: 400m
-            memory: 2048Mi
+            cpu: 200m
+            memory: 768Mi
         ports:
         - containerPort: 8080
         volumeMounts:
