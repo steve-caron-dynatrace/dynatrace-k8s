@@ -3,6 +3,7 @@
 #!./setup_base.sh
 echo "Setting up easyTravel"
 kubectl create namespace easytravel
+kubectl apply -f ../compute-resources-quota.yaml
 
 #!./create.sh
 echo "Creating easyTravel"

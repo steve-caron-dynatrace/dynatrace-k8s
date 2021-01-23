@@ -6,6 +6,7 @@ NC='\033[0m'
 echo -e "${YLW}Deploying Sock Shop pods in sockshop-dev and sockshop-production...${NC}"
 
 kubectl create -f ../manifests/k8s-namespaces.yml
+kubectl apply -f ../manifests/compute-resources-quota.yml
 
 kubectl apply -f ../manifests/backend-services/user-db/sockshop-dev/
 kubectl apply -f ../manifests/backend-services/user-db/sockshop-production/
