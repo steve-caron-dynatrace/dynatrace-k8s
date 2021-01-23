@@ -1,0 +1,8 @@
+{
+  "applicationIdentifier": "<EASYTRAVEL_APP_ID>",
+  "filterConfig": {
+    "pattern": "<EASYTRAVEL_DOMAIN>",
+    "applicationMatchType": "EQUALS",
+    "applicationMatchTarget": "DOMAIN"
+  }
+}
