@@ -6,7 +6,7 @@ NC='\033[0m'
 START=$(date +%s)
 DIFF=0
 # while not all public urls are available or more than 6 minutes have elapsed
-while ( [ -z $WWW_URL ] && [ $DIFF -lt 360 ];
+while [ -z $WWW_URL ] && [ $DIFF -lt 360 ];
 do
       WWW_URL=http://$(kubectl describe svc easytravel-www -n easytravel | grep "LoadBalancer Ingress:" | sed 's/LoadBalancer Ingress:[ \t]*//')
   echo -n .
