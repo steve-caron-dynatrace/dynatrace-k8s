@@ -1,6 +1,13 @@
 #!/bin/bash
 
-cd istio-1.7.0
+YLW='\033[1;33m'
+NC='\033[0m'
+
+echo ""
+echo -e "${YLW}Uninstalling Istio...${NC}"
+echo ""
+
+cd istio-1.7.4
 
 export PATH=$PWD/bin:$PATH
 
