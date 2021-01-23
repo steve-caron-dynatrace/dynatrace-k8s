@@ -16,14 +16,21 @@ spec:
     - destination:
         host: carts
   - match:
+    - uri:
+        prefix: "/login"
+    route:
+    - destination:
+        host: front-end
+        subset: v1
+  - match:
     - headers:
         cookie:
           regex: ".*logged_in.*"
     route:
     - destination:
         host: front-end
-        subset: v2
+        subset: v1
   - route:
     - destination:
         host: front-end
-        subset: v1
+        subset: v2

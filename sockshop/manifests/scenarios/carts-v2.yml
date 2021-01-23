@@ -2,16 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carts
-  namespace: sockshop-dev
+  name: carts-v2
+  namespace: sockshop-production
   labels:
     app: carts
+    version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: carts
-      version: "2.3"
+      version: v2
   template:
     metadata:
       annotations:    
@@ -24,7 +25,7 @@ spec:
         app: carts
         stage: dev
         release: stable
-        version: "2.3"
+        version: v2
         tier: "business"
         product: "sockshop"
     spec:
@@ -66,19 +67,4 @@ spec:
             medium: Memory
       nodeSelector:
         beta.kubernetes.io/os: linux
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: carts
-  labels:
-    app: carts
-  namespace: sockshop-dev
-spec:
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
-  selector:
-    app: carts
-  type: LoadBalancer
+
