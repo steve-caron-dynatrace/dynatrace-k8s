@@ -20,4 +20,3 @@ sed -i -r 's~EASYTRAVEL_URL=(.*)~EASYTRAVEL_URL\='"$WWW_URL"'~' ../../configurat
 echo ""
 echo -e "${YLW}EasyTravel:${NC} $WWW_URL"
 echo ""
-echo -e "${YLW}You can also get that any time with this command :${NC} cat ../../configuration.conf" 
