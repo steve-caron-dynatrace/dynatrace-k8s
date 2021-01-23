@@ -23,9 +23,9 @@ do
   DIFF=$(( $NOW - $START ))
 done
 
-sed -i -r 's~PROD_FRONTEND_URL=(.*)~PROD_FRONTEND_URL\='"$PROD_FRONTEND_URL"'~' ../../configuration.conf
-sed -i -r 's~PROD_CARTS_URL=(.*)~PROD_CARTS_URL\='"$PROD_CARTS_URL"'~' ../../configuration.conf
-sed -i -r 's~DEV_CARTS_URL=(.*)~DEV_CARTS_URL\='"$DEV_CARTS_URL"'~' ../../configuration.conf
+sed -i -r 's~SOCKSHOP_PROD_FRONTEND_URL=(.*)~SOCKSHOP_PROD_FRONTEND_URL\='"$PROD_FRONTEND_URL"'~' ../../configuration.conf
+sed -i -r 's~SOCKSHOP_PROD_CARTS_URL=(.*)~SOCKSHOP_PROD_CARTS_URL\='"$PROD_CARTS_URL"'~' ../../configuration.conf
+sed -i -r 's~SOCKSHOP_DEV_CARTS_URL=(.*)~SOCKSHOP_DEV_CARTS_URL\='"$DEV_CARTS_URL"'~' ../../configuration.conf
 
 echo ""
 echo -e "${YLW}Your application URLs:${NC}"
@@ -34,4 +34,4 @@ echo -e "${YLW}Sock Shop Production frontend:${NC} $PROD_FRONTEND_URL"
 echo -e "${YLW}Sock Shop Production carts:${NC} $PROD_CARTS_URL"
 echo -e "${YLW}Sock Shop Dev carts:${NC} $DEV_CARTS_URL" 
 echo ""
-echo -e "${YLW}You can also get those anytime with this command :${NC} cat ../../configuration.conf" 
+echo -e "${YLW}You can also get those any time with this command :${NC} cat ../../configuration.conf" 

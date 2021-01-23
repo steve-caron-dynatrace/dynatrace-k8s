@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FRONTEND_URL=$(grep "PROD_FRONTEND_URL=" ../../configuration.conf | sed 's~PROD_FRONTEND_URL=[ \t]*~~')
+FRONTEND_URL=$(grep "SOCKSHOP_PROD_FRONTEND_URL=" ../../configuration.conf | sed 's~SOCKSHOP_PROD_FRONTEND_URL=[ \t]*~~')
 USERNAME_PRE=$(grep "SOCKSHOP_USERNAME_PRE=" ../../configuration.conf | sed 's~SOCKSHOP_USERNAME_PRE=[ \t]*~~') 
 PASSWORD=$(grep "SOCKSHOP_PASSWORD=" ../../configuration.conf | sed 's~SOCKSHOP_PASSWORD=[ \t]*~~') 
 EMAIL=$(grep "SOCKSHOP_EMAIL=" ../../configuration.conf | sed 's~SOCKSHOP_EMAIL=[ \t]*~~') 
