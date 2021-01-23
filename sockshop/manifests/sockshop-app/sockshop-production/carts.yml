@@ -10,7 +10,7 @@ spec:
       app: carts
       stage: prod
       release: stable
-      version: "2.3"
+      version: v1
       tier: "business"
       product: "sockshop"
   replicas: 1
@@ -26,7 +26,7 @@ spec:
         app: carts
         stage: prod
         release: stable
-        version: "2.3"
+        version: v1
         tier: "business"
         product: "sockshop"
     spec:
