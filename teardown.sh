@@ -15,8 +15,9 @@ cd $CURRENT_DIR/istio
 cd $CURRENT_DIR/dynatrace/kubernetes
 ./uninstall-operator_oneagent.sh
 
+## Temporarily removing this for Perform 
 ## Uninstall ActiveGate
-./uninstall-activegate.sh
+#./uninstall-activegate.sh
 
 ## Remove Dynatrace-Kubernetes integration
 ./delete-k8s-integration-configuration.sh
