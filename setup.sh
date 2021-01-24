@@ -16,7 +16,10 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 ./deploy-operator.sh
 
 ## Deploy ActiveGate
-./deploy-activegate.sh
+#./deploy-activegate.sh
+
+## Deploy Kubernetes ActiveGate
+./deploy-k8s-activegate.sh
 
 ## Configure Dynatrace-Kubernetes integration
 ./config-k8s-integration.sh
