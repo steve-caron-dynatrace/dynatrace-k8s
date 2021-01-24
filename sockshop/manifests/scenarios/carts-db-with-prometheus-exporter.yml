@@ -64,6 +64,7 @@ spec:
         - mountPath: /data/db
           name: carts-db-mongodata
       - image: ssheehy/mongodb-exporter:0.10.0
+        name: exporter
         args:
           - --web.listen-address=:9216
           - --collect.collection
@@ -79,32 +80,6 @@ spec:
       - name: carts-db-mongodata
         persistentVolumeClaim:
           claimName: carts-db-mongodata
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: carts-db
-  namespace: sockshop-dev
-spec:
-  ports:
-  - name: "27017"
-    port: 27017
-    targetPort: 27017
-  selector:
-    name: carts-db
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: carts-db-mongodata
-  namespace: sockshop-production
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
-status: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -161,6 +136,7 @@ spec:
         - mountPath: /data/db
           name: carts-db-mongodata
       - image: ssheehy/mongodb-exporter:0.10.0
+        name: exporter
         args:
           - --web.listen-address=:9216
           - --collect.collection
@@ -176,16 +152,4 @@ spec:
       - name: carts-db-mongodata
         persistentVolumeClaim:
           claimName: carts-db-mongodata
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: carts-db
-  namespace: sockshop-production
-spec:
-  ports:
-  - name: "27017"
-    port: 27017
-    targetPort: 27017
-  selector:
-    name: carts-db
+
