@@ -56,7 +56,7 @@
             },
             {
               "type": "css",
-              "value": "a:contains(\"Add to\n                                    cart\")"
+              "value": "a:contains(\"Add to\n cart\")" 
             },
             {
               "type": "css",
@@ -216,9 +216,9 @@
         "wait": {
           "waitFor": "page_complete"
         }
-            }
-          ]
-        },
+      }
+    ]
+  },
   "locations": [
     "GEOLOCATION-9999453BE4BDB3CD",
     "GEOLOCATION-E01B833216FC3598",
@@ -231,6 +231,7 @@
       "localOutagePolicy": {
         "affectedLocations": 1,
         "consecutiveRuns": 3
+      }
     },
     "loadingTimeThresholds": {
       "enabled": false,
@@ -238,11 +239,10 @@
     }
   },
   "manuallyAssignedApps": [
-"<SOCKSHOP_WEB_APP_ID>"
+    "<SOCKSHOP_WEB_APP_ID>"
   ],
   "keyPerformanceMetrics": {
     "loadActionKpm": "VISUALLY_COMPLETE",
     "xhrActionKpm": "USER_ACTION_DURATION"
   }
-}
 }
