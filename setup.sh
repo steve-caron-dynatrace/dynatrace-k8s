@@ -15,8 +15,9 @@ cd $CURRENT_DIR/istio
 cd $CURRENT_DIR/dynatrace/kubernetes
 ./deploy-operator.sh
 
+## removed for Perform HOT, AG will be pre-installed with another script
 ## Deploy ActiveGate
-./deploy-activegate.sh
+#./deploy-activegate.sh
 
 ## Configure Dynatrace-Kubernetes integration
 ./config-k8s-integration.sh
