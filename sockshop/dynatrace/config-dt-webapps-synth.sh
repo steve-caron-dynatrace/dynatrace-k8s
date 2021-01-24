@@ -56,10 +56,10 @@ else
             SYNTHETIC_CONFIG_ANONYMOUS=$(cat ./sockshop_synthetic_template_anonymous.json | sed "s,<SOCKSHOP_FRONTEND_URL>,$PROD_FRONTEND_URL," | sed "s/<SOCKSHOP_WEB_APP_ID>/$PRODUCTION_APPLICATION_ID/" )
             for i in {1..4}
             do
-                sleep 10s
+                sleep 30s
 		        SYNTHETIC_CONFIG_NEW=$(echo $SYNTHETIC_CONFIG | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop - $i/" | sed "s/<SOCKSHOP_USERNAME>/$USERNAME_PRE$i/")
                 RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG_NEW" $DT_API_URL/v1/synthetic/monitors)
-                sleep 10s
+                sleep 30s
                 SYNTHETIC_CONFIG_ANONYMOUS_NEW=$(echo $SYNTHETIC_CONFIG_ANONYMOUS | sed "s/<SOCKSHOP_TEST_NAME>/Sock Shop Anonymous - $i/")
                 RESPONSE2=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG_ANONYMOUS_NEW" $DT_API_URL/v1/synthetic/monitors)
 

@@ -100,8 +100,7 @@ spec:
     type: Recreate
   template:
     metadata:
-      annotations:
-        
+      annotations:   
         metrics.dynatrace.com/scrape: "true"
         metrics.dynatrace.com/port: '9216'
         pipeline.stage: prod-stable
