@@ -12,7 +12,8 @@ curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.7.4 sh -
 
 cd istio-1.7.4
 
-cp ../values.yaml ./manifests/charts/gateways/istio-ingress/values.yaml
+## might not be necessary, seems it can work with classic ELB - need further testing
+#cp ../values.yaml ./manifests/charts/gateways/istio-ingress/values.yaml
 
 export PATH=$PWD/bin:$PATH
 
