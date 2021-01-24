@@ -7,6 +7,7 @@ TENANT_ID=$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIR
 DT_API_URL="https://$TENANT_ID.sprint.dynatracelabs.com"
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 
+kubectl create namespace dynatrace
 kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
 
 echo -e "${YLW}Obtaining k8s master API URL and bearer token${NC}"
