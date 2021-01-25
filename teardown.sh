@@ -18,6 +18,10 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 ## Uninstall ActiveGate
 #./uninstall-activegate.sh
 
+## Delete Maintenance Window
+cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
+./delete-kube-proxy-maintenance-window.sh
+
 ## Remove Dynatrace-Kubernetes integration
 ./delete-k8s-integration-configuration.sh
 

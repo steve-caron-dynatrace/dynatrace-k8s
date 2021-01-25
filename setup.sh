@@ -24,6 +24,10 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 ## Configure Dynatrace-Kubernetes integration
 ./config-k8s-integration.sh
 
+## Configure Maintenance Window to silence kube-proxy tcp connectivity problem
+cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
+./create-kube-proxy-maintenance-window.sh
+
 ## Deploy EasyTravel app
 cd $CURRENT_DIR/easytravel/scripts
 ./create_easytravel.sh
