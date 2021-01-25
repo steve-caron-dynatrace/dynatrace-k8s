@@ -16,7 +16,7 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 ./uninstall-operator_oneagent.sh
 
 ## Uninstall ActiveGate
-./uninstall-activegate.sh
+#./uninstall-activegate.sh
 
 ## Remove Dynatrace-Kubernetes integration
 ./delete-k8s-integration-configuration.sh
