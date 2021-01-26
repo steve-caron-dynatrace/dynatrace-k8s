@@ -1,0 +1,84 @@
+{
+  "name": "k8s:infra",
+  "rules": [
+    {
+      "type": "KUBERNETES_CLUSTER",
+      "enabled": true,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "KUBERNETES_CLUSTER_NAME"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "EQUALS",
+            "value": "dynatrace-workshop",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "HOST",
+      "enabled": true,
+      "propagationTypes": [
+        "HOST_TO_PROCESS_GROUP_INSTANCE"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "KUBERNETES_CLUSTER_NAME"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "EQUALS",
+            "value": "dynatrace-workshop",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "CLOUD_APPLICATION_NAMESPACE",
+      "enabled": true,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "KUBERNETES_CLUSTER_NAME"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "EQUALS",
+            "value": "dynatrace-workshop",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "CLOUD_APPLICATION",
+      "enabled": true,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "KUBERNETES_CLUSTER_NAME"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "EQUALS",
+            "value": "dynatrace-workshop",
+            "negate": false,
+            "caseSensitive": true
+          }
+        }
+      ]
+    }
+  ],
+  "dimensionalRules": []
+}
