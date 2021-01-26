@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: easytravel-mongodb
   name: easytravel-mongodb
   namespace: easytravel
 spec:
@@ -10,10 +8,12 @@ spec:
   selector:
     matchLabels:
       app: easytravel-mongodb
+      product: easytravel
   template:
     metadata:
       labels:
         app: easytravel-mongodb
+        product: easytravel
       annotations:
         support.contact: "demoability@dynatrace.com"
         support.channel: "#team-demoability"
