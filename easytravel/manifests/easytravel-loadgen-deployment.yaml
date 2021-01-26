@@ -35,5 +35,5 @@ spec:
         - name: ET_VISIT_NUMBER
           value: "5"
         image: dynatrace/easytravel-loadgen:2.0.0.3256
-        name: loadgen
+        name: easytravel-loadgen
       restartPolicy: Always
