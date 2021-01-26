@@ -3,6 +3,7 @@
 #!./setup_base.sh
 echo "Setting up easyTravel"
 kubectl create namespace easytravel
+kubectl -n easytravel create rolebinding default-view --clusterrole=view --serviceaccount=easytravel:default
 #kubectl apply -f ../compute-resources-quota.yaml
 
 #!./create.sh
