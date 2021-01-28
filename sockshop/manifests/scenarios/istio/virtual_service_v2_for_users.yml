@@ -15,6 +15,7 @@ spec:
     route:
     - destination:
         host: carts
+        subset: v2
   - match:
     - uri:
         prefix: "/login"

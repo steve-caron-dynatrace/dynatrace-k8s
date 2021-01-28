@@ -16,8 +16,9 @@ then
     else
             RATE=0
     fi
-    CARTS_DEV_URL=$(grep "SOCKSHOP_DEV_CARTS_URL=" ../configuration.conf | sed 's~SOCKSHOP_DEV_CARTS_URL=[ \t]*~~')
-    curl "$CARTS_DEV_URL/carts/1/items/promotion/$RATE"
+    PROD_URL=$(grep "SOCKSHOP_PROD_FRONTEND_URL=" ../configuration.conf | sed 's~SOCKSHOP_PROD_FRONTEND_URL=[ \t]*~~')
+    curl "$PROD_URL/carts/1/items/promotion/$RATE"
 else
-    echo -e "${YLW}You did not enter a valid option (1 or 2). Nothing will be changed."
+echo ""
+echo -e "${YLW}You did not enter a valid option (1 or 2). Nothing will be changed."
 fi

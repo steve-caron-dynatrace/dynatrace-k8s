@@ -1,48 +1,50 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carts-v2
-  namespace: sockshop-production
+  name: carts
+  namespace: sockshop-dev
+  labels:
+    app: carts
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: carts
-      stage: prod
+      stage: dev
       release: stable
-      version: v2
+      version: "2.3"
       tier: "business"
       product: "sockshop"
-  replicas: 1
   template:
     metadata:
       annotations:
-        pipeline.stage: prod-stable
-        pipeline.build: 2.3.1.3476
+        sidecar.istio.io/inject: "false"
+        pipeline.stage: dev
+        pipeline.build: 2.4.0.0832
         pipeline.project: sockshop
         support.contact: "john.doe@sockshop.com"
         support.channel: "#support-sockshop-services"
       labels:
         app: carts
-        stage: prod
+        stage: dev
         release: stable
-        version: v2
+        version: "2.3"
         tier: "business"
         product: "sockshop"
     spec:
       containers:
       - name: carts
-        image: dynatracesockshop/carts:0.5.0
+        image: wmsegar/carts:3.0
         env:
         - name: JAVA_OPTS
           value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
         resources:
           limits:
             cpu: 500m
-            memory: 2048Mi
+            memory: 1536Mi
           requests:
-            cpu: 400m
-            memory: 2048Mi        
+            cpu: 200m
+            memory: 768Mi
         ports:
         - containerPort: 8080
         volumeMounts:

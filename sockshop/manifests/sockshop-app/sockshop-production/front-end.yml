@@ -1,8 +1,7 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: front-end
+  name: front-end-v1
   namespace: sockshop-production
 spec:
   selector:
