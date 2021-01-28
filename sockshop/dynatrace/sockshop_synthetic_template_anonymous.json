@@ -84,6 +84,22 @@
       {
         "type": "click",
         "description": "click on \"numItemsInCart\"",
+        "validate": [
+          {
+            "type": "element_match",
+            "match": "0",
+            "isRegex": false,
+            "failIfFound": true,
+            "target": {
+              "locators": [
+                {
+                  "type": "css",
+                  "value": "#numItemsInCart"
+                }
+              ]
+            }
+          }
+        ],
         "target": {
           "locators": [
             {
