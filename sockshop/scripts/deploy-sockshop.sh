@@ -8,6 +8,9 @@ echo -e "${YLW}Deploying Sock Shop pods in sockshop-dev and sockshop-production.
 kubectl create -f ../manifests/k8s-namespaces.yml
 #kubectl apply -f ../manifests/compute-resources-quota.yml
 
+kubectl -n sockshop-production create rolebinding default-view --clusterrole=view --serviceaccount=sockshop-production:default
+kubectl -n sockshop-dev create rolebinding default-view --clusterrole=view --serviceaccount=sockshop-dev:default
+
 kubectl apply -f ../manifests/backend-services/user-db/sockshop-dev/
 kubectl apply -f ../manifests/backend-services/user-db/sockshop-production/
 
