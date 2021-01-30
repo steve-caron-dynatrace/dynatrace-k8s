@@ -5,8 +5,8 @@ NC='\033[0m'
 
 START=$(date +%s)
 DIFF=0
-# while not all public urls are available or more than 6 minutes have elapsed
-while ( [ -z $PROD_FRONTEND_URL ] || [ -z $DEV_CARTS_URL ] ) && [ $DIFF -lt 360 ];
+# while not all public urls are available or more than 10 minutes have elapsed
+while ( [ -z $PROD_FRONTEND_URL ] || [ -z $DEV_CARTS_URL ] ) && [ $DIFF -lt 600 ];
 do
   if [ ! -z "$1" ] && [ "$1" == "-istio" ]
     then
