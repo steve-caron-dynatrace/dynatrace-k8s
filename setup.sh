@@ -28,6 +28,9 @@ cd $CURRENT_DIR/dynatrace/kubernetes
 cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
 ./create-kube-proxy-maintenance-window.sh
 
+## Configure Anomaly Detection Rules
+cd $CURRENT_DIR/dynatrace/alerting/create-anomaly-detection-rules.sh
+
 ## Deploy EasyTravel app
 cd $CURRENT_DIR/easytravel/scripts
 ./create_easytravel.sh
@@ -47,3 +50,5 @@ cd $CURRENT_DIR/sockshop/scripts
 cd $CURRENT_DIR/sockshop/dynatrace
 ./config-dt-webapps-synth.sh -istio
 
+## Create dashboards
+cd $CURRENT_DIR/dynatrace/dashboards/create-dashboards.sh
