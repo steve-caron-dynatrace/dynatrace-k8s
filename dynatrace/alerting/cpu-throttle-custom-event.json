@@ -13,14 +13,14 @@
     "violatingSamples": 1,
     "dealertingSamples": 3,
     "alertCondition": "ABOVE",
-    "threshold": 70000000000,
+    "threshold": 180000000000,
     "unit": "NANO_SECOND_PER_MINUTE"
   },
   "alertCondition": "ABOVE",
   "samples": 3,
   "violatingSamples": 1,
   "dealertingSamples": 3,
-  "threshold": 70000000000,
+  "threshold": 180000000000,
   "unit": "NANO_SECOND_PER_MINUTE",
   "eventType": "RESOURCE_CONTENTION"
 }
