@@ -7,7 +7,14 @@ TENANT_ID=$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIR
 DT_API_URL="https://$TENANT_ID.sprint.dynatracelabs.com"
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 
-echo -e "${YLW}Creating anomaly detection rules${NC}"
+echo -e "${YLW}Deleting existing Alerting Profiles - 10 seconds${NC}"
+
+./delete-alerting-profiles.sh
+
+# wait, otherwise there are conflicts between delete and post resulting in constraint violations
+sleep 10s
+
+echo -e "${YLW}Creating alerting profiles${NC}"
 
 MZ=$(curl  -X GET "$DT_API_URL/api/config/v1/managementZones" -H  "accept: application/json; charset=utf-8" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN")
 
