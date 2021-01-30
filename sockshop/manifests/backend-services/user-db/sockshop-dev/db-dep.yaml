@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: user-db
   name: user-db
@@ -19,8 +18,6 @@ spec:
     metadata:
       creationTimestamp: null
       annotations:
-        
-        dynatrace/instrument: "false"
         pipeline.stage: dev
         pipeline.build: 2.1.0.3723
         pipeline.project: sockshop

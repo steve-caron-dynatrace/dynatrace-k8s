@@ -18,8 +18,6 @@ spec:
   template:
     metadata:
       annotations:
-        
-        dynatrace/instrument: "false"
         pipeline.stage: dev
         pipeline.build: 2.0.0.6347
         pipeline.project: sockshop
@@ -80,8 +78,6 @@ spec:
   template:
     metadata:
       annotations:
-        
-        dynatrace/instrument: "false"
         pipeline.stage: prod-stable
         pipeline.build: 1.4.3.0054
         pipeline.project: sockshop
