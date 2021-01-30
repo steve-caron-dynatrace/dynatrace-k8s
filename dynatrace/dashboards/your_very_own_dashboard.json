@@ -1,0 +1,48 @@
+{
+    "dashboardMetadata": {
+        "name": "Your very own dashboard",
+        "owner": "You",
+        "shared": true,
+        "sharingDetails": {
+            "linkShared": true,
+            "published": true
+        }
+    },
+    "tiles": [{
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 0,
+            "left": 0,
+            "width": 532,
+            "height": 190
+        },
+        "tileFilter": {},
+        "markdown": "## Application links : \n\n[EasyTravel](<EASYTRAVEL_URL>)\n\n[SockShop Production](<SOCKSHOP_PROD_FRONTEND_URL>)\n\n[SockShop Dev Carts](<SOCKSHOP_DEV_CARTS_URL>)"
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 190,
+            "left": 0,
+            "width": 532,
+            "height": 114
+        },
+        "tileFilter": {},
+        "markdown": "## Applications Logins : \n\nEasyTravel: **username:** hainer **password:** hainer\n\nSock Shop: **username:** perform **password:** 1234"
+    }, {
+        "name": "Markdown",
+        "tileType": "MARKDOWN",
+        "configured": true,
+        "bounds": {
+            "top": 760,
+            "left": 0,
+            "width": 532,
+            "height": 38
+        },
+        "tileFilter": {},
+        "markdown": "Token : <API_TOKEN>"
+    }]
+}
