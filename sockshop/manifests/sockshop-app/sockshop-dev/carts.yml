@@ -38,7 +38,7 @@ spec:
           value: -Xms128m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
         resources:
           limits:
-            cpu: 500m
+            cpu: 1000m
             memory: 1536Mi
           requests:
             cpu: 200m
