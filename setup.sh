@@ -29,7 +29,8 @@ cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
 ./create-kube-proxy-maintenance-window.sh
 
 ## Configure Anomaly Detection Rules
-cd $CURRENT_DIR/dynatrace/alerting/create-anomaly-detection-rules.sh
+cd $CURRENT_DIR/dynatrace/alerting
+./create-anomaly-detection-rules.sh
 
 ## Deploy EasyTravel app
 cd $CURRENT_DIR/easytravel/scripts
