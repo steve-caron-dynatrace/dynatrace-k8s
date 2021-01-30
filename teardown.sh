@@ -42,6 +42,10 @@ cd $CURRENT_DIR/sockshop/scripts
 cd $CURRENT_DIR/sockshop/dynatrace
 ./delete-dt-webapps-synth-configs.sh
 
+## Remove HipsterShop app
+cd $CURRENT_DIR/hipstershop
+./teardown.sh
+
 ## Delete dashboard
 cd $CURRENT_DIR/dynatrace/dashboards
 ./delete-dashboards.sh
