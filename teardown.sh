@@ -41,3 +41,18 @@ cd $CURRENT_DIR/sockshop/scripts
 cd $CURRENT_DIR/sockshop/dynatrace
 ./delete-dt-webapps-synth-configs.sh
 
+## Delete dashboard
+cd $CURRENT_DIR/dynatrace/dashboards
+./delete-dashboards.sh
+
+## Delete anomaly detection rules
+cd $CURRENT_DIR/dynatrace/alerting
+./delete-anomaly-detection-rules.sh
+
+## Delete alerting profiles
+cd $CURRENT_DIR/dynatrace/alerting
+./delete-alerting-profiles.sh
+
+## Delete management zones
+cd $CURRENT_DIR/dynatrace/management-zones
+./delete-management-zones.sh
