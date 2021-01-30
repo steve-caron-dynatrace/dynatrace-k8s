@@ -52,4 +52,5 @@ cd $CURRENT_DIR/sockshop/dynatrace
 ./config-dt-webapps-synth.sh -istio
 
 ## Create dashboards
-cd $CURRENT_DIR/dynatrace/dashboards/create-dashboards.sh
+cd $CURRENT_DIR/dynatrace/dashboards
+./create-dashboards.sh
