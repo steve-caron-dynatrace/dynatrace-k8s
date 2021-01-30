@@ -5,7 +5,10 @@ NC='\033[0m'
 
 echo -e "${YLW}Deploying HipsterShop...${NC}"
 
-../hipstershop/setup.sh
+PWD=$(pwd)
+cd ../hipstershop
+./setup.sh
+cd $PWD
 
 echo -e "${YLW}Waiting 2 minutes for the pods to become ready...${NC}"
 sleep 120s
