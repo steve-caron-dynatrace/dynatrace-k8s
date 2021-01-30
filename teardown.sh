@@ -23,6 +23,7 @@ cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
 ./delete-kube-proxy-maintenance-window.sh
 
 ## Remove Dynatrace-Kubernetes integration
+cd $CURRENT_DIR/dynatrace/kubernetes
 ./delete-k8s-integration-configuration.sh
 
 ## Delete EasyTravel app
