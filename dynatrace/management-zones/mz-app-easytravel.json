@@ -26,6 +26,28 @@
       ]
     },
     {
+      "type": "BROWSER_MONITOR",
+      "enabled": true,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "BROWSER_MONITOR_TAGS"
+          },
+          "comparisonInfo": {
+            "type": "TAG",
+            "operator": "EQUALS",
+            "value": {
+              "context": "CONTEXTLESS",
+              "key": "product",
+              "value": "easytravel"
+            },
+            "negate": false
+          }
+        }
+      ]
+    },
+    {
       "type": "KUBERNETES_CLUSTER",
       "enabled": true,
       "propagationTypes": [],

@@ -80,6 +80,26 @@
           }
         }
       ]
+    },
+    {
+      "type": "SYNTHETIC_TEST",
+      "enabled": true,
+      "valueFormat": "easytravel",
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "BROWSER_MONITOR_NAME"
+          },
+          "comparisonInfo": {
+            "type": "STRING",
+            "operator": "BEGINS_WITH",
+            "value": "EasyTravel",
+            "negate": false,
+            "caseSensitive": false
+          }
+        }
+      ]
     }
   ]
 }
