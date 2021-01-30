@@ -37,7 +37,13 @@ spec:
         image: dynatrace/easytravel-backend
         imagePullPolicy: "Always"
         name: easytravel-backend
-        resources: {}
+        resources:
+          limits:
+            cpu: 200m
+            memory: 768Mi
+          requests:
+            cpu: 50m
+            memory: 512Mi
         ports:
         - containerPort: 8080
         readinessProbe:

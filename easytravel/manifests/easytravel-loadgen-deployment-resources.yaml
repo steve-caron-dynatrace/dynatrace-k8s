@@ -36,5 +36,11 @@ spec:
           value: "5"
         image: dynatrace/easytravel-loadgen:2.0.0.3256
         name: easytravel-loadgen
-        resources: {}
+        resources:
+          limits:
+            cpu: 100m
+            memory: 768Mi
+          requests:
+            cpu: 50m
+            memory: 500Mi
       restartPolicy: Always

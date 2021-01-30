@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: easytravel-backend
+  name: easytravel-frontend
   namespace: easytravel
 spec:
   selector:
     matchLabels:
-      app: easytravel-backend
+      app: easytravel-frontend
       product: easytravel
   replicas: 1
   template:
     metadata:
       labels:
-        app: easytravel-backend
+        app: easytravel-frontend
         product: easytravel
       annotations:
         support.contact: "demoability@dynatrace.com"
@@ -21,25 +21,21 @@ spec:
       containers:
       - env:
         - name: CATALINA_OPTS
-          value: -Dconfig.apmServerDefault=APM -Xmx300m -Djava.security.egd=file:/dev/./urandom
-        - name: ET_DATABASE_LOCATION
-          value: easytravel-mongodb:27017
-        - name: ET_MONGO_AUTH_DB
-          value: admin
-        - name: ET_DATABASE_USER
-          value: etAdmin
-        - name: ET_DATABASE_PASSWORD
-          value: adminadmin
-        - name: ET_PLUGIN_SERVICE_LOCATION
-          value: easytravel-pluginservice:8080
+          value: -Dconfig.apmServerDefault=APM -Xmx525m -Djava.security.egd=file:/dev/./urandom
         - name: ET_BACKEND_URL
           value: http://easytravel-backend:8080
-        image: dynatrace/easytravel-backend
+        image: dynatrace/easytravel-frontend
         imagePullPolicy: "Always"
-        name: easytravel-backend
-        resources: {}
+        name: easytravel-frontend
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: 150m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 1000Mi
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -52,11 +48,11 @@ spec:
         livenessProbe:
           failureThreshold: 3
           httpGet:
-            path: /services/JourneyService/getLocations
+            path: /
             port: 8080
             scheme: HTTP
           periodSeconds: 60
           initialDelaySeconds: 240
           successThreshold: 1
-          timeoutSeconds: 1  
+          timeoutSeconds: 1
       restartPolicy: Always
