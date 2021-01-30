@@ -11,7 +11,7 @@ echo -e "${YLW}Deleting anomaly detection rules${NC}"
 
 DASHBOARDS=$(curl -X GET "$DT_API_URL/api/config/v1/dashboards" -H  "accept: application/json; charset=utf-8" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN")
 
-DASHBOARD_ID=$(echo $DASHBOARDS | jq -c -r '.dashboards | .[] | select(.name == "Your very own dashboard") | .id')
+DASHBOARD_ID=$(echo $DASHBOARDS | jq -c -r '.dashboards | .[] | select(.name == "Dynatrace workshop dashboard template") | .id')
 
 if [ ! -z "$DASHBOARD_ID" ]
 then
