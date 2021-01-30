@@ -22,3 +22,17 @@ for i in $(jq '.values | keys | .[]' <<< $RESPONSE); do
         echo $(curl -X DELETE -H  "accept: */*" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN" "$DT_API_URL/config/v1/applications/web/$APPLICATION_ID");
     fi
 done
+
+# getting synthetic monitors from dynatrace
+
+RESPONSE=$(curl -X GET -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" "$DT_API_URL/v1/synthetic/monitors")
+echo $RESPONSE
+
+# deleting Sock Shop synthetic monitors
+
+for i in $(jq '.monitors | keys | .[]' <<< $RESPONSE); do
+    if [[ $(jq -r ".monitors[$i] | .name" <<< $RESPONSE) =~ "EasyTravel" ]]; then
+        MONITOR_ID=$(jq -r ".monitors[$i] | .entityId" <<< $RESPONSE);
+        echo $(curl -X DELETE -H  "accept: */*" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN" "$DT_API_URL/v1/synthetic/monitors/$MONITOR_ID");
+    fi
+done

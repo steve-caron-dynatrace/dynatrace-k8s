@@ -44,3 +44,10 @@ else
             RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
         fi
 fi
+
+# create synthetic monitor
+
+SYNTHETIC_CONFIG=$(cat ./easytravel_url_monitor-template.json | sed "s,<EASYTRAVEL_URL>,$EASYTRAVEL_URL," | sed "s,<APP_ID>,$APPLICATION_ID," )
+
+RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG" $DT_API_URL/v1/synthetic/monitors)
+
