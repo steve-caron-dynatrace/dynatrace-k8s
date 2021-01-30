@@ -1,0 +1,38 @@
+{
+  "metricId": "builtin:cloud.kubernetes.workload.pods",
+  "name": "Pending pods",
+  "description": "Pods from workload {dims:dt.entity.cloud_application} have been detected to be in {dims:Pod phase} phase.",
+  "aggregationType": "MIN",
+  "severity": "RESOURCE_CONTENTION",
+  "enabled": true,
+  "disabledReason": "NONE",
+  "warningReason": "NONE",
+  "metricDimensions": [
+    {
+      "filterType": "STRING",
+      "key": "Pod phase",
+      "name": null,
+      "index": null,
+      "textFilter": {
+        "value": "PHASE_PENDING",
+        "operator": "EQUALS"
+      }
+    }
+  ],
+  "monitoringStrategy": {
+    "type": "STATIC_THRESHOLD",
+    "samples": 3,
+    "violatingSamples": 1,
+    "dealertingSamples": 3,
+    "alertCondition": "ABOVE",
+    "threshold": 0,
+    "unit": "COUNT"
+  },
+  "alertCondition": "ABOVE",
+  "samples": 3,
+  "violatingSamples": 1,
+  "dealertingSamples": 3,
+  "threshold": 0,
+  "unit": "COUNT",
+  "eventType": "RESOURCE_CONTENTION"
+}

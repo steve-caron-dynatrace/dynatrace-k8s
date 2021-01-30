@@ -1,0 +1,64 @@
+{
+  "displayName": "sockshop carts dev",
+  "rules": [
+    {
+      "severityLevel": "ERROR",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ALL",
+        "tagFilters": [
+          {
+            "context": "KUBERNETES",
+            "key": "app",
+            "value": "carts"
+          },
+          {
+            "context": "KUBERNETES",
+            "key": "stage",
+            "value": "dev"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    },
+    {
+      "severityLevel": "PERFORMANCE",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ALL",
+        "tagFilters": [
+          {
+            "context": "KUBERNETES",
+            "key": "app",
+            "value": "carts"
+          },
+          {
+            "context": "KUBERNETES",
+            "key": "stage",
+            "value": "dev"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    },
+    {
+      "severityLevel": "RESOURCE_CONTENTION",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ALL",
+        "tagFilters": [
+          {
+            "context": "KUBERNETES",
+            "key": "app",
+            "value": "carts"
+          },
+          {
+            "context": "KUBERNETES",
+            "key": "stage",
+            "value": "dev"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    }
+  ],
+  "mzId": "<MZ_ID>",
+  "eventTypeFilters": []
+}
