@@ -10,17 +10,17 @@
   "monitoringStrategy": {
     "type": "STATIC_THRESHOLD",
     "samples": 3,
-    "violatingSamples": 1,
+    "violatingSamples": 3,
     "dealertingSamples": 3,
     "alertCondition": "ABOVE",
-    "threshold": 180000000000,
+    "threshold": 100000000000,
     "unit": "NANO_SECOND_PER_MINUTE"
   },
   "alertCondition": "ABOVE",
   "samples": 3,
-  "violatingSamples": 1,
+  "violatingSamples": 3,
   "dealertingSamples": 3,
-  "threshold": 180000000000,
+  "threshold": 100000000000,
   "unit": "NANO_SECOND_PER_MINUTE",
   "eventType": "RESOURCE_CONTENTION"
 }
