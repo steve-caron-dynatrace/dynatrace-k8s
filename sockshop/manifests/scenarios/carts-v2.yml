@@ -22,6 +22,7 @@ spec:
         pipeline.project: sockshop
         support.contact: "john.doe@sockshop.com"
         support.channel: "#support-sockshop-services"
+        canary: v2
       labels:
         app: carts
         stage: prod
