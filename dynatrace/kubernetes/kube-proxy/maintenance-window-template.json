@@ -8,7 +8,26 @@
     "entities": [
       "<PG_ID>"
     ],
-    "matches": []
+    "matches": [
+      {
+        "type": null,
+        "managementZoneId": null,
+        "mzId": null,
+        "tags": [
+          {
+            "context": "KUBERNETES",
+            "key": "product",
+            "value": "hipster-shop"
+          },
+          {
+            "context": "KUBERNETES",
+            "key": "app",
+            "value": "front-end"
+          }
+        ],
+        "tagCombination": "AND"
+      }
+    ]
   },
   "schedule": {
     "recurrenceType": "ONCE",
