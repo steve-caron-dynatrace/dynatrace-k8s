@@ -21,6 +21,7 @@ spec:
         pipeline.project: sockshop
         support.contact: "jane.smith@sockshop.com"
         support.channel: "#support-sockshop-frontend"
+        canary: v1
       labels:
         app: front-end
         stage: prod

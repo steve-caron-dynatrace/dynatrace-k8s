@@ -29,6 +29,7 @@ spec:
         version: v1
         tier: "business"
         product: "sockshop"
+        canary: v1
     spec:
       containers:
       - name: carts
