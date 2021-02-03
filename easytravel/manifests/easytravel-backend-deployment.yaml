@@ -34,7 +34,7 @@ spec:
           value: easytravel-pluginservice:8080
         - name: ET_BACKEND_URL
           value: http://easytravel-backend:8080
-        image: dynatrace/easytravel-backend
+        image: dynatrace/easytravel-backend:2.0.0.3273
         imagePullPolicy: "Always"
         name: easytravel-backend
         resources: {}

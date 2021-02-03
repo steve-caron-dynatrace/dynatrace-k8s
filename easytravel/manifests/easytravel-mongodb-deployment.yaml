@@ -19,7 +19,7 @@ spec:
         support.channel: "#team-demoability"
     spec:
       containers:
-      - image: dynatrace/easytravel-mongodb
+      - image: dynatrace/easytravel-mongodb:2.0.0.3292
         imagePullPolicy: "Always"
         name: easytravel-mongodb
         ports:
