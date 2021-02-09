@@ -10,19 +10,13 @@ CURRENT_DIR=$(pwd)
 cd $CURRENT_DIR/istio
 /bin/bash ./istio-install.sh
 
-## Deploy the OneAgent Operator
+## Deploy the Dynatrace Operator
 
 cd $CURRENT_DIR/dynatrace/kubernetes
 ./deploy-operator.sh
 
-## Deploy ActiveGate
-#./deploy-activegate.sh
-
-## Deploy Kubernetes ActiveGate
-./deploy-k8s-activegate.sh
-
-## Configure Dynatrace-Kubernetes integration
-./config-k8s-integration.sh
+## wait 1 minute for OneAgent to report to Dynatrace
+sleep 60s
 
 ## Configure Maintenance Window to silence kube-proxy tcp connectivity problem
 cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy

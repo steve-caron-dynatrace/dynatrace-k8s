@@ -5,7 +5,7 @@ NC='\033[0m'
 
 echo -e "${YLW}Configuring Dynatrace for EasyTravel...${NC}"
 
-DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').sprint.dynatracelabs.com/api
+DT_API_URL=$(grep "DT_API_URL=" ../../configuration.conf | sed 's~DT_API_URL=[ \t]*~~')
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 EASYTRAVEL_WEBAPP_CONFIG=$(cat ./easytravel_webapp_template.json | sed "s/<EASYTRAVEL_WEBAPP_NAME>/EasyTravel/")
 
@@ -18,7 +18,7 @@ AUTOTAG_PRODUCT_CONFIG=$(cat ./tagging_rule_product.json)
 
 echo -e "${YLW}Configuring EasyTravel Web Application...${NC}"
 
-RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$EASYTRAVEL_WEBAPP_CONFIG" $DT_API_URL/config/v1/applications/web)
+RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$EASYTRAVEL_WEBAPP_CONFIG" $DT_API_URL/api/config/v1/applications/web)
 
 if [[ $RESPONSE == *"error"* ]]; then
     echo $RESPONSE
@@ -32,7 +32,7 @@ else
         APP_DETECTION_RULE=$(cat ./application_detection_rules_template.json | sed "s/<EASYTRAVEL_APP_ID>/$APPLICATION_ID/" | \
             sed "s/<EASYTRAVEL_DOMAIN>/$EASYTRAVEL_DOMAIN/")
 
-        RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
+        RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/api/config/v1/applicationDetectionRules)
 
         if [[ $RESPONSE == *"error"* ]]; then
             echo $RESPONSE
@@ -41,7 +41,7 @@ else
             EASYTRAVEL_DOMAIN=easytravel-www
             APP_DETECTION_RULE=$(cat ./application_detection_rules_template.json | sed "s/<EASYTRAVEL_APP_ID>/$APPLICATION_ID/" | \
             sed "s/<EASYTRAVEL_DOMAIN>/$EASYTRAVEL_DOMAIN/")
-            RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/config/v1/applicationDetectionRules)
+            RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$APP_DETECTION_RULE" $DT_API_URL/api/config/v1/applicationDetectionRules)
         fi
 fi
 
@@ -49,5 +49,5 @@ fi
 
 SYNTHETIC_CONFIG=$(cat ./easytravel_url_monitor-template.json | sed "s,<EASYTRAVEL_URL>,$EASYTRAVEL_URL," | sed "s,<APP_ID>,$APPLICATION_ID," )
 
-RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG" $DT_API_URL/v1/synthetic/monitors)
+RESPONSE=$(curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" -d "$SYNTHETIC_CONFIG" $DT_API_URL/api/v1/synthetic/monitors)
 

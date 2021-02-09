@@ -10,21 +10,14 @@ CURRENT_DIR=$(pwd)
 cd $CURRENT_DIR/istio
 ./istio-uninstall.sh
 
-## Uninstall the OneAgent and the Operator
+## Uninstall the Dynatrace Operator
 
 cd $CURRENT_DIR/dynatrace/kubernetes
-./uninstall-operator_oneagent.sh
-
-## Uninstall ActiveGate
-#./uninstall-activegate.sh
+./uninstall-operator.sh
 
 ## Delete Maintenance Window
 cd $CURRENT_DIR/dynatrace/kubernetes/kube-proxy
 ./delete-kube-proxy-maintenance-window.sh
-
-## Remove Dynatrace-Kubernetes integration
-cd $CURRENT_DIR/dynatrace/kubernetes
-./delete-k8s-integration-configuration.sh
 
 ## Delete EasyTravel app
 cd $CURRENT_DIR/easytravel/scripts

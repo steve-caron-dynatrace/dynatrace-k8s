@@ -5,8 +5,7 @@ NC='\033[0m'
 
 PG_DETECTED_NAME="kube-proxy kube-proxy"
 
-TENANT_ID=$(grep "DT_ENVIRONMENT_ID=" ../../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~')
-DT_API_URL="https://$TENANT_ID.sprint.dynatracelabs.com"
+DT_API_URL=$(grep "DT_API_URL=" ../../../configuration.conf | sed 's~DT_API_URL=[ \t]*~~')
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 DT_API_TOKEN=$(grep "DT_API_TOKEN=" ../../../configuration.conf | sed 's~DT_API_TOKEN=[ \t]*~~')
 

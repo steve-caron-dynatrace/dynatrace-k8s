@@ -5,13 +5,13 @@ NC='\033[0m'
 
 echo -e "${YLW}Deleting Dynatrace Kubernetes integration configuration...${NC}"
 
-DT_API_URL=https://$(grep "DT_ENVIRONMENT_ID=" ../../configuration.conf | sed 's~DT_ENVIRONMENT_ID=[ \t]*~~').sprint.dynatracelabs.com/api
+DT_API_URL=$(grep "DT_API_URL=" ../../configuration.conf | sed 's~DT_API_URL=[ \t]*~~')
 DT_CONFIG_TOKEN=$(grep "DT_CONFIG_TOKEN=" ../../configuration.conf | sed 's~DT_CONFIG_TOKEN=[ \t]*~~')
 
 # getting k8s integration configs from dynatrace
 echo -e "${YLW}Deleting k8s integrations...${NC}"
 
-RESPONSE=$(curl -X GET -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" $DT_API_URL/config/v1/kubernetes/credentials)
+RESPONSE=$(curl -X GET -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Api-Token $DT_CONFIG_TOKEN" $DT_API_URL/api/config/v1/kubernetes/credentials)
 echo $RESPONSE
 
 # deleting k8s integration configs
@@ -19,6 +19,6 @@ echo $RESPONSE
 for i in $(jq '.values | keys | .[]' <<< $RESPONSE); do
     if [[ $(jq -r ".values[$i] | .name" <<< $RESPONSE) = "dynatrace-workshop" ]]; then
         CONFIG_ID=$(jq -r ".values[$i] | .id" <<< $RESPONSE);
-        echo $(curl -X DELETE -H  "accept: */*" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN" "$DT_API_URL/config/v1/kubernetes/credentials/$CONFIG_ID");
+        echo $(curl -X DELETE -H  "accept: */*" -H  "Authorization: Api-Token $DT_CONFIG_TOKEN" "$DT_API_URL/api/config/v1/kubernetes/credentials/$CONFIG_ID");
     fi
 done
